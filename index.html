@@ -60,6 +60,31 @@
     </div>
   </div>
 
+<!-- Modal -->
+<div class="modal fade" id="portada" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body text-center">
+      	<img class="mx-auto mb-1" src="vendor/logo_udo.png" height="75px" style="display: block">
+      	Universidad de Oriente <br>
+      	Nucleo Nueva Esparta <br>
+      	Escuela de Ciencias Aplicadas <br>
+      	Licenciatura en Informatia <br>
+      	Simulacion y Modelos <br>
+
+      	<h4 class="my-5">Proyecto #1. Simulacion Monte Carlo</h4>
+
+      	<strong>Integrantes:</strong> <br>
+      	Miguel Maestre <br>
+      	Luis Salazar <br>
+      	Victor Villagran <br>
+
+      	<p class="mt-5">Guatamare, 19 de Marzo de 2019.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
   <script src="vendor/jquery-slim.min.js"></script>
   <script src="vendor/popper.min.js"></script>
   <script src="vendor/bootstrap.min.js"></script>
@@ -67,12 +92,15 @@
   <script src="vendor/charts.min.js"></script>
 
   <!-- Codigo del proyecto -->
+  <script src="js/data.js"></script>
   <script src="js/generadores.js"></script>
   <script src="js/inputs.js"></script>
   <script src="js/tablas.js"></script>
-  <script src="main.js"></script>
+  <script src="js/main.js"></script>
   
   <script>
+  	$('#portada').modal()
+
     $(function () {
       $('#content-tab').on('click', function (e){
         e.preventDefault()

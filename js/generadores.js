@@ -9,6 +9,17 @@ const cuadradoMedio = (seed, k, i, tabla) => {
 	}
 }
 
+const productoMedio = (seed1, seed2, k , i, tabla) => {
+	let producto = (parseInt(seed1) * parseInt(seed2)).toString()
+	let nuevaSemilla = extraerCentro(producto, k)
+	tabla.push([seed1, seed2, producto, nuevaSemilla, nuevaSemilla/10**k])
+	if (i < n-1) {
+		return productoMedio(seed2, nuevaSemilla, k, i+1, tabla)
+	} else {
+		return tabla
+	}
+}
+
 const productoMedioVariado = (seed, a, k , i, tabla) => {
 	let producto = (parseInt(seed) * parseInt(a)).toString()
 	let nuevaSemilla = extraerCentro(producto, k)
@@ -16,17 +27,6 @@ const productoMedioVariado = (seed, a, k , i, tabla) => {
 
 	if (i < n-1) {
 		return productoMedioVariado(nuevaSemilla, a, k, i+1, tabla)
-	} else {
-		return tabla
-	}
-}
-
-const productoMedio = (seed1, seed2, k , i, tabla) => {
-	let producto = (parseInt(seed1) * parseInt(seed2)).toString()
-	let nuevaSemilla = extraerCentro(producto, k)
-	tabla.push([seed1, seed2, producto, nuevaSemilla, nuevaSemilla/10**k])
-	if (i < n-1) {
-		return productoMedio(seed2, nuevaSemilla, k, i+1, tabla)
 	} else {
 		return tabla
 	}
