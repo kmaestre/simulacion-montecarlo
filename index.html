@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Proyecto #1 | Simulacion y Modelos</title>
+  <link rel="stylesheet" href="vendor/bootstrap.min.css">
+  <style>
+    * {
+      font-family: 'Fira Code'
+    }
+  </style>
+
+</head>
+
+<body class="container-fluid">
+  <div class="row">
+    <div class="card col-2 p-1" style="height: 100vh;">
+      <div class="form-group">
+        <label for="metodo">Metodo:</label>
+        <select id="metodo" class="form-control" name="metodo" onchange="addInputs()">
+          <option value="">Seleccione uno</option>
+          <option value="cuamed">Cuadrado Medio</option>
+          <option value="promed">Producto Medio</option>
+          <option value="promed2">Producto Medio Variado</option>
+          <option value="conmix">Congruencial Mixto</option>
+          <option value="conmul">Congruencial Multiplicativo</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="">Dias:</label>
+        <input id="n" type="number" class="form-control" placeholder="000">
+      </div>
+      <div class="form-group" id="inputs">
+      </div>
+      <div class="form-group">
+        <button class="btn btn-block btn-dark" onclick="ejecutar()">Ejecutar</button>
+      </div>
+    </div>
+    <div class="col p-1 text-center" style="height: 100vh">
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="numeros-tab" data-toggle="tab" href="#numeros" role="tab" aria-controls="numeros" aria-selected="true">Numeros Generados</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="simulacion-tab" data-toggle="tab" href="#simulacion" role="tab" aria-controls="simulacion" aria-selected="false">Simulacion</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="resultados-tab" data-toggle="tab" href="#resultados" role="tab" aria-controls="resultados" aria-selected="false">Resultados</a>
+        </li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="numeros" role="tabpanel" aria-labelledby="numeros-tab"></div>
+        <div class="tab-pane" id="simulacion" role="tabpanel" aria-labelledby="simulaicon-tab"></div>
+        <div class="tab-pane" id="resultados" role="tabpanel" aria-labelledby="resultados-tab"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="vendor/jquery-slim.min.js"></script>
+  <script src="vendor/popper.min.js"></script>
+  <script src="vendor/bootstrap.min.js"></script>
+
+  <script src="vendor/charts.min.js"></script>
+
+  <!-- Codigo del proyecto -->
+  <script src="js/generadores.js"></script>
+  <script src="js/inputs.js"></script>
+  <script src="js/tablas.js"></script>
+  <script src="main.js"></script>
+  
+  <script>
+    $(function () {
+      $('#content-tab').on('click', function (e){
+        e.preventDefault()
+        $(this).tab('show')
+      })
+    })
+  </script>
+</body>
+
+</html>
