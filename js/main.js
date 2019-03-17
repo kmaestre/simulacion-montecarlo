@@ -42,6 +42,9 @@ const ejecutar = () => {
 	if (metodo == 'conmul') {
 		let sem = document.getElementById('sem').value
 		let NPA = (congruencialMulti(sem, sem.length, 0, []))
+		let aleatorios = []
+		NPA.forEach(fila => {aleatorios.push(parseFloat(fila[fila.length-1]))})
+		console.log(kolmogorov(aleatorios))
 		tablaCongruencialMulti(NPA)
 	}
 }
