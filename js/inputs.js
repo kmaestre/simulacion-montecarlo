@@ -1,3 +1,12 @@
+const addInputs = () => {
+	metodo = document.getElementById('metodo').value;
+	if (metodo == 'promed') inputsProductoMedio()
+	if (metodo == 'promed2') inputsProductoMedioVariado()
+	if (metodo == 'cuamed') inputsCuadradoMedio()
+	if (metodo == 'conmix') inputsCongruencialMixto()
+	if (metodo == 'conmul') inputsCongruencialMulti()
+}
+
 const inputsCuadradoMedio = () => {
 	let inputs = `
 		<label for="sem">Semilla 1:</label>

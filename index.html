@@ -50,18 +50,233 @@
         <li class="nav-item">
           <a class="nav-link" id="resultados-tab" data-toggle="tab" href="#resultados" role="tab" aria-controls="resultados" aria-selected="false">Resultados</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" id="tablas-finales-tab" data-toggle="tab" href="#tablas-finales" role="tab" aria-controls="tablas-finales" aria-selected="false">Tablas</a>
+        </li>
       </ul>
 
       <div class="tab-content">
         <div class="tab-pane active" id="numeros" role="tabpanel" aria-labelledby="numeros-tab"></div>
         <div class="tab-pane" id="simulacion" role="tabpanel" aria-labelledby="simulaicon-tab"></div>
         <div class="tab-pane" id="resultados" role="tabpanel" aria-labelledby="resultados-tab"></div>
+        
+        <div class="tab-pane" id="tablas-finales" role="tabpanel" aria-labelledby="tablas-finales-tab" style="overflow-y: scroll; height: 90vh">
+          <strong>Tabla #1. Destino Paquete</strong>
+          <table class="table-bordered table table-stripped small table-hover">
+            <thead class="bg-dark text-light">
+              <tr>
+                <th>Destino</th>
+                <th>Primera</th>
+                <th>Turista</th>
+                <th>f(x)</th>
+                <th>F(x)</th>
+                <th>i - c</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Tibet</td>
+                <td>750</td>
+                <td>630</td>
+                <td>0.020</td>
+                <td>0.020</td>
+                <td>[00, 19]</td>
+              </tr>
+              <tr>
+                <td>Madrid</td>
+                <td>590</td>
+                <td>480</td>
+                <td>0.070</td>
+                <td>0.090</td>
+                <td>[20, 89]</td>
+              </tr>
+              <tr>
+                <td>Venecia</td>
+                <td>540</td>
+                <td>420</td>
+                <td>0.150</td>
+                <td>0.240</td>
+                <td>[90, 239]</td>
+              </tr>
+              <tr>
+                <td>Aruba</td>
+                <td>230</td>
+                <td>110</td>
+                <td>0.200</td>
+                <td>0.440</td>
+                <td>[240, 439]</td>
+              </tr>
+              <tr>
+                <td>Miami</td>
+                <td>310</td>
+                <td>190</td>
+                <td>0.200</td>
+                <td>0.640</td>
+                <td>[440, 639]</td>
+              </tr>
+              <tr>
+                <td>Acapulco</td>
+                <td>450</td>
+                <td>330</td>
+                <td>0.160</td>
+                <td>0.800</td>
+                <td>[640, 799]</td>
+              </tr>
+              <tr>
+                <td>París</td>
+                <td>665</td>
+                <td>545</td>
+                <td>0.100</td>
+                <td>0.900</td>
+                <td>[800, 899]</td>
+              </tr>
+              <tr>
+                <td>Rio de Janeiro</td>
+                <td>428</td>
+                <td>308</td>
+                <td>0.060</td>
+                <td>0.960</td>
+                <td>[900, 959]</td>
+              </tr>
+              <tr>
+                <td>Buenos Aires</td>
+                <td>497</td>
+                <td>377</td>
+                <td>0.030</td>
+                <td>0.990</td>
+                <td>[960, 989]</td>
+              </tr>
+              <tr>
+                <td>Londres</td>
+                <td>685</td>
+                <td>565</td>
+                <td>0.010</td>
+                <td>1.000</td>
+                <td>[990, 1000]</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <hr class="divider">
+          <strong>Tabla #2. Tipo Boleto / Nivel Social</strong>
+          <table class="table-bordered table table-stripped small table-hover">
+            <thead class="bg-dark text-light">
+              <tr>
+                <th>Tipo Boleto</th>
+                <th>Nive S-e</th>
+                <th>f(x)</th>
+                <th>F(x)</th>
+                <th>i - c</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Turista</td>
+                <td>Clase Media</td>
+                <td>0.330</td>
+                <td>0.330</td>
+                <td>[00, 329]</td>
+              </tr>
+              <tr>
+                <td>Primera</td>
+                <td>Clase Alta</td>
+                <td>0.670</td>
+                <td>1.000</td>
+                <td>[330, 1000]</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <hr class="divider">
+          <strong>Tabla #3. Personas por Paquete</strong>
+          <table class="table-bordered table table-stripped small table-hover">
+            <thead class="bg-dark text-light">
+              <tr>
+                <th>Cantidad</th>
+                <th>f(x)</th>
+                <th>F(x)</th>
+                <th>i - c</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>0.250</td>
+                <td>0.250</td>
+                <td>[00, 249]</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>0.480</td>
+                <td>0.730</td>
+                <td>[250, 729]</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>0.150</td>
+                <td>0.880</td>
+                <td>[730, 879]</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>0.080</td>
+                <td>0.960</td>
+                <td>[880, 959]</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>0.040</td>
+                <td>1.000</td>
+                <td>[960, 1000]</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <hr class="divider">
+          <strong>Tabla #3. Paquetes vendidos por dia</strong>
+          <table class="table-bordered table table-stripped small table-hover">
+            <thead class="bg-dark text-light">
+              <tr>
+                <th>Cantidad</th>
+                <th>f(x)</th>
+                <th>F(x)</th>
+                <th>i - c</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>0</td><td>0.060</td><td>0.060</td><td>[000, 059]</td>
+            </tr>
+            <tr>
+              <td>1</td><td>0.090</td><td>0.150</td><td>[060, 149]</td>
+            </tr>
+            <tr>
+              <td>2</td><td>0.110</td><td>0.260</td><td>[150, 259]</td>
+            </tr>
+            <tr>
+              <td>3</td><td>0.140</td><td>0.400</td><td>[260, 399]</td>
+            </tr>
+            <tr>
+              <td>4</td><td>0.180</td><td>0.580</td><td>[400, 579]</td>
+            </tr>
+            <tr>
+              <td>5</td><td>0.230</td><td>0.810</td><td>[560, 809]</td>
+            </tr>
+            <tr>
+              <td>6</td><td>0.140</td><td>0.950</td><td>[810, 949]</td>
+            </tr>
+            <tr>
+              <td>7</td><td>0.050</td><td>1.000</td><td>[950, 1000]</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
 
 <!-- Modal -->
-<div class="modal fade" id="portada" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<!--<div class="modal fade" id="portada" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-body text-center">
@@ -84,7 +299,7 @@
     </div>
   </div>
 </div>
-
+-->
   <script src="vendor/jquery-slim.min.js"></script>
   <script src="vendor/popper.min.js"></script>
   <script src="vendor/bootstrap.min.js"></script>

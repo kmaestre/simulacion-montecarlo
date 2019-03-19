@@ -1,3 +1,8 @@
+const extraerCentro = (y, k) => {
+	let desde = ((y.length - k) / 2);
+	return (y.toString().substring(desde, desde + k))
+}
+
 const cuadradoMedio = (seed, k, i, tabla) => {
 	let cuadrado = (parseInt(seed)**2).toString()
 	let nuevaSemilla = extraerCentro(cuadrado, k);

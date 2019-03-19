@@ -1,19 +1,32 @@
 let metodo = null;
 let n = 0;
 
-const addInputs = () => {
-	metodo = document.getElementById('metodo').value;
-	if (metodo == 'promed') inputsProductoMedio()
-	if (metodo == 'promed2') inputsProductoMedioVariado()
-	if (metodo == 'cuamed') inputsCuadradoMedio()
-	if (metodo == 'conmix') inputsCongruencialMixto()
-	if (metodo == 'conmul') inputsCongruencialMulti()
+const paquetesDia = (num) => {
+	let paqDias = tabla_paquetes_vendidos
+	let res
+	for (let i = 0; i < paqDias.length; i++) {
+		if ((num >= paqDias[i][3][0]) && (num <= paqDias[i][3][1])) {
+			res = paqDias[i][0]
+			break;
+		}
+	}
+
+	return res
 }
 
-const extraerCentro = (y, k) => {
-	let desde = ((y.length - k) / 2);
-	return (y.toString().substring(desde, desde + k))
+const tipoPaquete = (num) => {
+	let tipos = tabla_tipo
+	let res
+	for (let i = 0; i < tipos.length; i++) {
+		if ((num >= tipos[i][3][0]) && (num <= tipos[i][3][1])) {
+			res = tipos[i][0]
+			break;
+		}
+	}
+
+	return res
 }
+
 
 const ejecutar = () => {
 	n = parseInt(document.getElementById('n').value)
