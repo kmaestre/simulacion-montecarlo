@@ -7,7 +7,7 @@ const tablaHtml = (headers, filas) => {
 	      ${filas}
 	    </tbody>
 	  </table>
-	`	
+	`
 }
 
 const filasHtml = (tabla) => {
