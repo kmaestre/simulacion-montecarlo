@@ -1,10 +1,15 @@
 const addInputs = () => {
 	metodo = document.getElementById('metodo').value;
+	if (metodo == '') clearInputs()
 	if (metodo == 'promed') inputsProductoMedio()
 	if (metodo == 'promed2') inputsProductoMedioVariado()
 	if (metodo == 'cuamed') inputsCuadradoMedio()
 	if (metodo == 'conmix') inputsCongruencialMixto()
 	if (metodo == 'conmul') inputsCongruencialMulti()
+}
+
+const clearInputs = () => {
+	document.getElementById('inputs').innerHTML = ''
 }
 
 const inputsCuadradoMedio = () => {

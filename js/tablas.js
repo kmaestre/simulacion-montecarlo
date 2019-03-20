@@ -1,6 +1,6 @@
 const tablaHtml = (headers, filas) => {
-	return `<table class="table table-sm table-striped table-hover">
-	    <thead>
+	return `<table class="table table-sm table-striped table-hover table-bordered">
+	    <thead class="bg-dark text-white">
 	       ${headers}
 	    </thead>
 	    <tbody>
@@ -10,12 +10,12 @@ const tablaHtml = (headers, filas) => {
 	`
 }
 
-const filasHtml = (tabla) => {
+const filasHtmlGeneradores = (tabla) => {
 	let filas = ''
 
 	tabla.forEach((fila, i) => {
 		let td = ''
-		td += `<td>${i}</td>`
+		td += `<td>${i + 1}</td>`
 		fila.forEach((el) => {
 			td += `<td>${el}</td>`
 		})
@@ -37,7 +37,7 @@ const tablaCuadradoMedio = (tabla) => {
     </tr>
 	`
 
-	$('div#numeros').html(tablaHtml(headers, filasHtml(tabla)))
+	$('div#numeros').html(tablaHtml(headers, filasHtmlGeneradores(tabla)))
 }
 
 const tablaProductoMedio = (tabla) => {
@@ -51,7 +51,7 @@ const tablaProductoMedio = (tabla) => {
     </tr>
 	`
 
-	$('div#numeros').html(tablaHtml(headers, filasHtml(tabla)))
+	$('div#numeros').html(tablaHtml(headers, filasHtmlGeneradores(tabla)))
 }
 
 const tablaProductoMedioVariado = (tabla) => {
@@ -64,7 +64,7 @@ const tablaProductoMedioVariado = (tabla) => {
     </tr>
 	`
 
-	$('div#numeros').html(tablaHtml(headers, filasHtml(tabla)))
+	$('div#numeros').html(tablaHtml(headers, filasHtmlGeneradores(tabla)))
 }
 
 const tablaCongruencialMixto = (tabla) => {
@@ -77,7 +77,7 @@ const tablaCongruencialMixto = (tabla) => {
     </tr>
 	`
 
-	$('div#numeros').html(tablaHtml(headers, filasHtml(tabla)))
+	$('div#numeros').html(tablaHtml(headers, filasHtmlGeneradores(tabla)))
 }
 
 const tablaCongruencialMulti = (tabla) => {
@@ -90,5 +90,49 @@ const tablaCongruencialMulti = (tabla) => {
     </tr>
 	`
 
-	$('div#numeros').html(tablaHtml(headers, filasHtml(tabla)))
+	$('div#numeros').html(tablaHtml(headers, filasHtmlGeneradores(tabla)))
+}
+
+const tablaResultadoPaqDia = () => {
+	let tabla = document.getElementById('res-paq-ven')
+
+	let filas = '';
+	PAQ_DIA.forEach((dia, i) => {
+		filas += `<tr>
+			<td>${i + 1}</td>
+			<td>${dia[1]}</td>
+			<td>${dia[0]}</td>
+		</tr>`
+	})
+	tabla.innerHTML = filas
+}
+
+const tablaResultadoSimulacion = (simulacion) => {
+	let tabla = document.getElementById('res-sim')
+
+	let filas = '';
+
+	simulacion.forEach((dia, i) => {
+		filas += `
+			<tr>
+				<td	colspan="7" style="background-color: #cccccc"> <strong>Dia ${i + 1}</strong> </td>
+			</tr>
+		`
+		dia.forEach((paquete, i) => {
+			console.log(JSON.stringify(paquete))
+			filas += `
+				<tr>
+					<td>${i+1}</td>
+					<td>${paquete[1]}</td>
+					<td>${paquete[0]}</td>
+					<td>${paquete[2][1]}</td>
+					<td>${paquete[2][0]}</td>
+					<td>${paquete[3][1]}</td>
+					<td>${paquete[3][0]}</td>
+				</tr>
+			`
+		})
+	})
+
+	tabla.innerHTML = filas
 }

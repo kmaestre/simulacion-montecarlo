@@ -7,10 +7,10 @@ let TIP_PAQ = []
 
 const paquetesDia = (num) => {
 	let paqDias = tabla_paquetes_vendidos
-	let res
+	let res = []
 	for (let i = 0; i < paqDias.length; i++) {
 		if ((num >= paqDias[i][3][0]) && (num <= paqDias[i][3][1])) {
-			res = paqDias[i][0]
+			res.push(paqDias[i][0], num)
 		}
 	}
 
@@ -19,10 +19,10 @@ const paquetesDia = (num) => {
 
 const tipoPaquete = (num) => {
 	let tipos = tabla_tipo
-	let res
+	let res = []
 	for (let i = 0; i < tipos.length; i++) {
 		if ((num >= tipos[i][3][0]) && (num <= tipos[i][3][1])) {
-			res = tipos[i][0]
+			res.push(tipos[i][0], num)
 			break;
 		}
 	}
@@ -35,7 +35,7 @@ const personasPaquete = (num) => {
 	let res
 	for (let i = 0; i < perPaq.length; i++) {
 		if ((num >= perPaq[i][3][0]) && (num <= perPaq[i][3][1])) {
-			res = perPaq[i][0]
+			res = [perPaq[i][0], num]
 			break;
 		}
 	}
@@ -81,6 +81,7 @@ const generarValores = (aleatrios, de) => {
 const ejecutar = () => {
 	DIAS_SIM = parseInt(document.getElementById('dias').value)
 	n = parseInt(DIAS_SIM) * 7 * 3
+
 	if (metodo == 'cuamed') {
 		let sem = document.getElementById('sem').value
 		GENERADOS = cuadradoMedio(sem, sem.toString().length, 0, [])
@@ -108,20 +109,30 @@ const ejecutar = () => {
 		tablaCongruencialMulti(GENERADOS)
 	}
 
-
 	let aleatorios = []
 	GENERADOS.forEach(fila => { aleatorios.push(parseFloat(fila[fila.length - 1])) })
 
 	PAQ_DIA = generarValores(aleatorios.splice(0, DIAS_SIM), 'paquetes_dia')
-	let totalPaquetes = PAQ_DIA.reduce((acum, cant) => (acum + cant))
-	PER_PAQ = generarValores(aleatorios.splice(0, totalPaquetes), 'personas_paquete')
-	TIP_PAQ = generarValores(aleatorios.splice(0, totalPaquetes), 'tipo_paquete')
-	DES_PAQ = generarValores(aleatorios.splice(0, totalPaquetes), 'destino')
+	let totalPaquetes = 0
+	let resPaqDias = []
+	PAQ_DIA.forEach((dia) => {
+		resPaqDias.push(generarValores(aleatorios.splice(0, dia[0]), 'personas_paquete'))
+	})
+
+	resPaqDias.forEach(dia => {
+		dia.forEach(paq => {
+			paq.push(generarValores(aleatorios.splice(0, 1), 'destino')[0])
+			paq.push(generarValores(aleatorios.splice(0, 1), 'tipo_paquete')[0])
+		})
+	})
+
+	console.log('---------------------\n', resPaqDias)
+	//PER_PAQ = generarValores(aleatorios.splice(0, totalPaquetes), 'personas_paquete')
+	//TIP_PAQ = generarValores(aleatorios.splice(0, totalPaquetes), 'tipo_paquete')
+	//DES_PAQ = generarValores(aleatorios.splice(0, totalPaquetes), 'destino')
 
 
 	//logs
-	console.log(PAQ_DIA)
-	console.log(PER_PAQ)
-	console.log(TIP_PAQ)
-	console.log(DES_PAQ)
+	tablaResultadoPaqDia()
+	tablaResultadoSimulacion(resPaqDias)
 }

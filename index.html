@@ -58,11 +58,49 @@
       <div class="tab-content">
         <div class="tab-pane active" id="numeros" role="tabpanel" aria-labelledby="numeros-tab"></div>
         <div class="tab-pane" id="simulacion" role="tabpanel" aria-labelledby="simulaicon-tab"></div>
-        <div class="tab-pane" id="resultados" role="tabpanel" aria-labelledby="resultados-tab"></div>
+        
+        <div class="tab-pane" style="height: 95vh; overflow-y: scroll; overflow-x: hidden" id="resultados" role="tabpanel" aria-labelledby="resultados-tab">
+          <div class="row">
+              <div class="col-5 mx-auto">
+                <strong>Tabla #5. Paquetes por Dia</strong>
+                <table class="table table-sm table-striped table-hover table-bordered">
+                    <thead class="bg-dark text-white">
+                      <tr>
+                        <th>Dia</th>
+                        <th>R<sub>n</sub></th>
+                        <th>Paq.Vendidos</th>
+                      </tr>
+                    </thead>
+                    <tbody id="res-paq-ven">
+        
+                    </tbody>
+                  </table>
+              </div>
+              <div class="col-12">
+                <strong>Tabla #6. Resultados</strong>
+                <table class="table table-sm table-hover table-bordered">
+                    <thead class="bg-dark text-white">
+                      <tr>
+                        <th>Paquete</th>
+                        <th>R<sub>n</sub></th>
+                        <th>C. Personas</th>
+                        <th>R<sub>n</sub></th>
+                        <th>Destino</th>
+                        <th>R<sub>n</sub></th>
+                        <th>Boleto</th>
+                      </tr>
+                    </thead>
+                    <tbody id="res-sim">
+        
+                    </tbody>
+                  </table>
+              </div>
+          </div>
+        </div>
         
         <div class="tab-pane" id="tablas-finales" role="tabpanel" aria-labelledby="tablas-finales-tab" style="overflow-y: scroll; height: 90vh">
           <strong>Tabla #1. Destino Paquete</strong>
-          <table class="table-bordered table table-stripped small table-hover">
+          <table class="table table-striped table-sm table-bordered table-hover">
             <thead class="bg-dark text-light">
               <tr>
                 <th>Destino</th>
@@ -158,7 +196,7 @@
           </table>
 
           <strong>Tabla #2. Tipo Boleto / Nivel Social</strong>
-          <table class="table-bordered table table-stripped small table-hover">
+          <table class="table table-striped table-sm table-bordered table-hover">
             <thead class="bg-dark text-light">
               <tr>
                 <th>Tipo Boleto</th>
@@ -186,9 +224,8 @@
             </tbody>
           </table>
 
-          <hr class="divider">
           <strong>Tabla #3. Personas por Paquete</strong>
-          <table class="table-bordered table table-stripped small table-hover">
+          <table class="table table-striped table-sm table-bordered table-hover">
             <thead class="bg-dark text-light">
               <tr>
                 <th>Cantidad</th>
@@ -231,9 +268,8 @@
             </tbody>
           </table>
 
-          <hr class="divider">
           <strong>Tabla #3. Paquetes vendidos por dia</strong>
-          <table class="table-bordered table table-stripped small table-hover">
+          <table class="table table-striped table-sm table-bordered table-hover">
             <thead class="bg-dark text-light">
               <tr>
                 <th>Cantidad</th>

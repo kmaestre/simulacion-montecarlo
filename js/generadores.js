@@ -60,7 +60,7 @@ const congruencialMixto = (seed, k, i, tabla) => {
 }
 
 const congruencialMulti = (seed, k, i, tabla) => {
-	let m = 31, a = 3
+	let m = 121, a = 24
 	let aseed = ((a * (parseInt(seed))))
 	let nuevaSemilla = (aseed % m).toString()
 	let numero = (parseInt(seed)) / m
