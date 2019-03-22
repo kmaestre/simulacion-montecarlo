@@ -93,11 +93,11 @@ const tablaCongruencialMulti = (tabla) => {
 	$('div#numeros').html(tablaHtml(headers, filasHtmlGeneradores(tabla)))
 }
 
-const tablaResultadoPaqDia = () => {
+const tablaResultadoPaqDia = (dias) => {
 	let tabla = document.getElementById('res-paq-ven')
 
 	let filas = '';
-	PAQ_DIA.forEach((dia, i) => {
+	dias.forEach((dia, i) => {
 		filas += `<tr>
 			<td>${i + 1}</td>
 			<td>${dia[1]}</td>
@@ -118,20 +118,23 @@ const tablaResultadoSimulacion = (simulacion) => {
 				<td	colspan="7" style="background-color: #cccccc"> <strong>Dia ${i + 1}</strong> </td>
 			</tr>
 		`
-		dia.forEach((paquete, i) => {
-			console.log(JSON.stringify(paquete))
+		console.log(dia)
+		let paquetes = dia.slice(1, dia.length)
+		if (!paquetes.length) {
+			filas += `<tr><td colspan="7" class="alert-danger" text-danger> 0 paquetes vendidos </td></tr>`
+		} else {paquetes.forEach((paquete, i) => {
 			filas += `
 				<tr>
 					<td>${i+1}</td>
-					<td>${paquete[1]}</td>
-					<td>${paquete[0]}</td>
+					<td>${paquete[1][1]}</td>
+					<td>${paquete[1][0]}</td>
+					<td>${paquete[0][1]}</td>
+					<td>${paquete[0][0]}</td>
 					<td>${paquete[2][1]}</td>
 					<td>${paquete[2][0]}</td>
-					<td>${paquete[3][1]}</td>
-					<td>${paquete[3][0]}</td>
 				</tr>
 			`
-		})
+		})}
 	})
 
 	tabla.innerHTML = filas

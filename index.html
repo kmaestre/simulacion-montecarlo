@@ -31,7 +31,7 @@
       </div>
       <div class="form-group">
         <label for="">Dias:</label>
-        <input id=dias type="number" class="form-control" placeholder="000">
+        <input id="dias" type="text" class="form-control" placeholder="000" oninput="soloNumeros()" onpaste="return false" autocomplete="off">
       </div>
       <div class="form-group" id="inputs">
       </div>
@@ -42,63 +42,69 @@
     <div class="col p-1 text-center" style="height: 100vh">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
-          <a class="nav-link active" id="numeros-tab" data-toggle="tab" href="#numeros" role="tab" aria-controls="numeros" aria-selected="true">Numeros Generados</a>
+          <a class="nav-link active" id="numeros-tab" data-toggle="tab" href="#numeros" role="tab"
+            aria-controls="numeros" aria-selected="true">Numeros Generados</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="simulacion-tab" data-toggle="tab" href="#simulacion" role="tab" aria-controls="simulacion" aria-selected="false">Simulacion</a>
+          <a class="nav-link" id="simulacion-tab" data-toggle="tab" href="#simulacion" role="tab"
+            aria-controls="simulacion" aria-selected="false">Simulacion</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="resultados-tab" data-toggle="tab" href="#resultados" role="tab" aria-controls="resultados" aria-selected="false">Resultados</a>
+          <a class="nav-link" id="resultados-tab" data-toggle="tab" href="#resultados" role="tab"
+            aria-controls="resultados" aria-selected="false">Resultados</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="tablas-finales-tab" data-toggle="tab" href="#tablas-finales" role="tab" aria-controls="tablas-finales" aria-selected="false">Tablas</a>
+          <a class="nav-link" id="tablas-finales-tab" data-toggle="tab" href="#tablas-finales" role="tab"
+            aria-controls="tablas-finales" aria-selected="false">Tablas</a>
         </li>
       </ul>
 
       <div class="tab-content">
         <div class="tab-pane active" id="numeros" role="tabpanel" aria-labelledby="numeros-tab"></div>
         <div class="tab-pane" id="simulacion" role="tabpanel" aria-labelledby="simulaicon-tab"></div>
-        
-        <div class="tab-pane" style="height: 95vh; overflow-y: scroll; overflow-x: hidden" id="resultados" role="tabpanel" aria-labelledby="resultados-tab">
+
+        <div class="tab-pane" style="height: 95vh; overflow-y: scroll; overflow-x: hidden" id="resultados"
+          role="tabpanel" aria-labelledby="resultados-tab">
           <div class="row">
-              <div class="col-5 mx-auto">
-                <strong>Tabla #5. Paquetes por Dia</strong>
-                <table class="table table-sm table-striped table-hover table-bordered">
-                    <thead class="bg-dark text-white">
-                      <tr>
-                        <th>Dia</th>
-                        <th>R<sub>n</sub></th>
-                        <th>Paq.Vendidos</th>
-                      </tr>
-                    </thead>
-                    <tbody id="res-paq-ven">
-        
-                    </tbody>
-                  </table>
-              </div>
-              <div class="col-12">
-                <strong>Tabla #6. Resultados</strong>
-                <table class="table table-sm table-hover table-bordered">
-                    <thead class="bg-dark text-white">
-                      <tr>
-                        <th>Paquete</th>
-                        <th>R<sub>n</sub></th>
-                        <th>C. Personas</th>
-                        <th>R<sub>n</sub></th>
-                        <th>Destino</th>
-                        <th>R<sub>n</sub></th>
-                        <th>Boleto</th>
-                      </tr>
-                    </thead>
-                    <tbody id="res-sim">
-        
-                    </tbody>
-                  </table>
-              </div>
+            <div class="col-5 mx-auto">
+              <strong>Tabla #5. Paquetes por Dia</strong>
+              <table class="table table-sm table-striped table-hover table-bordered">
+                <thead class="bg-dark text-white">
+                  <tr>
+                    <th>Dia</th>
+                    <th>R<sub>n</sub></th>
+                    <th>Paq.Vendidos</th>
+                  </tr>
+                </thead>
+                <tbody id="res-paq-ven">
+
+                </tbody>
+              </table>
+            </div>
+            <div class="col-12">
+              <strong>Tabla #6. Resultados</strong>
+              <table class="table table-sm table-hover table-bordered">
+                <thead class="bg-dark text-white">
+                  <tr>
+                    <th>Paquete</th>
+                    <th>R<sub>n</sub></th>
+                    <th>C. Personas</th>
+                    <th>R<sub>n</sub></th>
+                    <th>Destino</th>
+                    <th>R<sub>n</sub></th>
+                    <th>Boleto</th>
+                  </tr>
+                </thead>
+                <tbody id="res-sim">
+
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
-        
-        <div class="tab-pane" id="tablas-finales" role="tabpanel" aria-labelledby="tablas-finales-tab" style="overflow-y: scroll; height: 90vh">
+
+        <div class="tab-pane" id="tablas-finales" role="tabpanel" aria-labelledby="tablas-finales-tab"
+          style="overflow-y: scroll; height: 90vh">
           <strong>Tabla #1. Destino Paquete</strong>
           <table class="table table-striped table-sm table-bordered table-hover">
             <thead class="bg-dark text-light">
@@ -118,7 +124,7 @@
                 <td>630</td>
                 <td>0.020</td>
                 <td>0.020</td>
-                <td>[000, 019]</td>
+                <td>[0.000, 0.019]</td>
               </tr>
               <tr>
                 <td>Madrid</td>
@@ -126,7 +132,7 @@
                 <td>480</td>
                 <td>0.070</td>
                 <td>0.090</td>
-                <td>[020, 089]</td>
+                <td>[0.020, 0.089]</td>
               </tr>
               <tr>
                 <td>Venecia</td>
@@ -134,7 +140,7 @@
                 <td>420</td>
                 <td>0.150</td>
                 <td>0.240</td>
-                <td>[090, 239]</td>
+                <td>[0.090, 0.239]</td>
               </tr>
               <tr>
                 <td>Aruba</td>
@@ -142,7 +148,7 @@
                 <td>110</td>
                 <td>0.200</td>
                 <td>0.440</td>
-                <td>[240, 439]</td>
+                <td>[0.240, 0.439]</td>
               </tr>
               <tr>
                 <td>Miami</td>
@@ -150,7 +156,7 @@
                 <td>190</td>
                 <td>0.200</td>
                 <td>0.640</td>
-                <td>[440, 639]</td>
+                <td>[0.440, 0.639]</td>
               </tr>
               <tr>
                 <td>Acapulco</td>
@@ -158,7 +164,7 @@
                 <td>330</td>
                 <td>0.160</td>
                 <td>0.800</td>
-                <td>[640, 799]</td>
+                <td>[0.640, 0.799]</td>
               </tr>
               <tr>
                 <td>París</td>
@@ -166,7 +172,7 @@
                 <td>545</td>
                 <td>0.100</td>
                 <td>0.900</td>
-                <td>[800, 899]</td>
+                <td>[0.800, 0.899]</td>
               </tr>
               <tr>
                 <td>Rio de Janeiro</td>
@@ -174,7 +180,7 @@
                 <td>308</td>
                 <td>0.060</td>
                 <td>0.960</td>
-                <td>[900, 959]</td>
+                <td>[0.900, 0.959]</td>
               </tr>
               <tr>
                 <td>Buenos Aires</td>
@@ -182,7 +188,7 @@
                 <td>377</td>
                 <td>0.030</td>
                 <td>0.990</td>
-                <td>[960, 989]</td>
+                <td>[0.960, 0.989]</td>
               </tr>
               <tr>
                 <td>Londres</td>
@@ -190,7 +196,7 @@
                 <td>565</td>
                 <td>0.010</td>
                 <td>1.000</td>
-                <td>[990, 1000]</td>
+                <td>[0.990, 0.999]</td>
               </tr>
             </tbody>
           </table>
@@ -212,14 +218,14 @@
                 <td>Clase Media</td>
                 <td>0.330</td>
                 <td>0.330</td>
-                <td>[000, 329]</td>
+                <td>[0.000, 0.329]</td>
               </tr>
               <tr>
                 <td>Primera</td>
                 <td>Clase Alta</td>
                 <td>0.670</td>
                 <td>1.000</td>
-                <td>[330, 1000]</td>
+                <td>[0.330, 0.999]</td>
               </tr>
             </tbody>
           </table>
@@ -239,31 +245,31 @@
                 <td>1</td>
                 <td>0.250</td>
                 <td>0.250</td>
-                <td>[000, 249]</td>
+                <td>[0.000, 0.249]</td>
               </tr>
               <tr>
                 <td>2</td>
                 <td>0.480</td>
                 <td>0.730</td>
-                <td>[250, 729]</td>
+                <td>[0.250, 0.729]</td>
               </tr>
               <tr>
                 <td>3</td>
                 <td>0.150</td>
                 <td>0.880</td>
-                <td>[730, 879]</td>
+                <td>[0.730, 0.879]</td>
               </tr>
               <tr>
                 <td>4</td>
                 <td>0.080</td>
                 <td>0.960</td>
-                <td>[880, 959]</td>
+                <td>[0.880, 0.959]</td>
               </tr>
               <tr>
                 <td>5</td>
                 <td>0.040</td>
                 <td>1.000</td>
-                <td>[960, 1000]</td>
+                <td>[0.960, 0.999]</td>
               </tr>
             </tbody>
           </table>
@@ -279,54 +285,54 @@
               </tr>
             </thead>
             <tbody>
-            <tr>
-              <td>0</td>
-              <td>0.060</td>
-              <td>0.060</td>
-              <td>[000, 059]</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>0.090</td>
-              <td>0.150</td>
-              <td>[060, 149]</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>0.110</td>
-              <td>0.260</td>
-              <td>[150, 259]</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>0.140</td>
-              <td>0.400</td>
-              <td>[260, 399]</td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>0.180</td>
-              <td>0.580</td>
-              <td>[400, 579]</td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td>0.230</td>
-              <td>0.810</td>
-              <td>[560, 809]</td>
-            </tr>
-            <tr>
-              <td>6</td>
-              <td>0.140</td>
-              <td>0.950</td>
-              <td>[810, 949]</td>
-            </tr>
-            <tr>
-              <td>7</td>
-              <td>0.050</td>
-              <td>1.000</td>
-              <td>[950, 1000]</td>
-            </tr>
+              <tr>
+                <td>0</td>
+                <td>0.060</td>
+                <td>0.060</td>
+                <td>[0.000, 0.059]</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>0.090</td>
+                <td>0.150</td>
+                <td>[0.060, 0.149]</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>0.110</td>
+                <td>0.260</td>
+                <td>[0.150, 0.259]</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>0.140</td>
+                <td>0.400</td>
+                <td>[0.260, 0.399]</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>0.180</td>
+                <td>0.580</td>
+                <td>[0.400, 0.579]</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>0.230</td>
+                <td>0.810</td>
+                <td>[0.560, 0.809]</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>0.140</td>
+                <td>0.950</td>
+                <td>[0.810, 0.949]</td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td>0.050</td>
+                <td>1.000</td>
+                <td>[0.950, 0.999]</td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -334,8 +340,8 @@
     </div>
   </div>
 
-<!-- Modal -->
-<!--<div class="modal fade" id="portada" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <!-- Modal -->
+  <!--<div class="modal fade" id="portada" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-body text-center">
@@ -372,16 +378,20 @@
   <script src="js/inputs.js"></script>
   <script src="js/tablas.js"></script>
   <script src="js/main.js"></script>
-  
+
   <script>
-  	$('#portada').modal()
+    $('#portada').modal()
 
     $(function () {
-      $('#content-tab').on('click', function (e){
+      $('#content-tab').on('click', function (e) {
         e.preventDefault()
         $(this).tab('show')
       })
     })
+
+    const soloNumeros = () => {
+      event.target.value = event.target.value.replace(/\D/gi, '')
+    }
   </script>
 </body>
 
