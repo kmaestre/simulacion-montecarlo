@@ -78,6 +78,55 @@ const generarValores = (aleatrios, de) => {
 	return res
 }
 
+const paquetesVendidos = (dias) => {
+	let res = 0;
+	dias.forEach(dia => {
+		res += dia[0][0]
+	})
+
+	return res
+
+}
+
+const buscarPaquete = (vendidos, destino) => {
+
+	for (let i = 0; i < vendidos.length; i++) {
+		if (vendidos[i][0] == destino) {
+			return i
+		};
+	}
+	return (-1)
+}
+
+const masVisitado = (dias) => {
+	let vendidos = []
+	dias.forEach((dia, i) => {
+		dia.slice(1, dia.length).forEach(paquete => {
+			let pos = buscarPaquete(vendidos, paquete[0][0])
+			if (pos == (-1)) {
+				vendidos.push([paquete[0][0], paquete[1][0]])
+			} else {
+				vendidos[pos][1] += paquete[1][0]
+			}
+		})
+	})
+
+
+	console.log('el destino ma visitado:', vendidos.sort((a, b) => (b[1] - a[1]))[0])
+}
+
+const costoPaquete = (destino, personas, tipo) => {
+	let res = 0
+	tabla_paquetes.forEach(paq => {
+		if (paq[0] == destino) {
+			if (tipo == 'Turista') { res = (paq[5] * personas) }
+			if (tipo == 'Primera') { res = (paq[4] * personas) }
+		}
+	})
+
+	return res
+}
+
 const ejecutar = () => {
 	DIAS_SIM = parseInt(document.getElementById('dias').value)
 	n = parseInt(DIAS_SIM) * 7 * 3
@@ -90,19 +139,41 @@ const ejecutar = () => {
 	if (metodo == 'promed') {
 		let sem1 = document.getElementById('sem1').value
 		let sem2 = document.getElementById('sem2').value
+		if (sem1.length != sem2.length) {
+			alert('Las semillas deben tener la misma cantidad de digitos.')
+			return
+		}
 		GENERADOS = productoMedio(sem1, sem2, sem1.length, 0, [])
 		tablaProductoMedio(GENERADOS)
 	}
 	if (metodo == 'promed2') {
 		let sem = document.getElementById('sem').value
 		let a = document.getElementById('a').value
+		if (sem.length != a.length) {
+			alert('La semilla y la constante "a" deben tener la misma cantidad de digitos.')
+			return
+		}
 		tablaProductoMedioVariado(GENERADOS)
 	}
 	if (metodo == 'conmix') {
 		let sem = document.getElementById('sem').value
-		GENERADOS = (congruencialMixto(sem, sem.length, 0, []))
+		let a = parseInt(document.getElementById('a').value)
+		let c = parseInt(document.getElementById('c').value)
+
+		if (!(a % 2) || (!(a % 3) && !(a % 5))) {
+			alert('El valor de "a" no cumple las condiciones necesarias, por favor introduzca un valor valido.')
+			return
+		}
+
+		if (c % 8 != 5) {
+			alert('El valor de "c" no cumple las condiciones necesarias, por favor introduzca un valor valido.')
+			return
+		}
+
+		GENERADOS = (congruencialMixto(sem, sem.length, a, c, 0, []))
 		tablaCongruencialMixto(GENERADOS)
 	}
+
 	if (metodo == 'conmul') {
 		let sem = document.getElementById('sem').value
 		GENERADOS = (congruencialMulti(sem, sem.length, 0, []))
@@ -113,6 +184,7 @@ const ejecutar = () => {
 	GENERADOS.forEach(fila => { aleatorios.push(parseFloat(fila[fila.length - 1])) })
 
 	let resPaqDias = []
+	let gananciaTotal = 0
 	for (let i = 0; i < DIAS_SIM; i++) {
 		let dia = []
 		dia.push(generarValores(aleatorios.splice(0, 1), 'paquetes_dia'))
@@ -122,14 +194,15 @@ const ejecutar = () => {
 			paquete.push(generarValores(aleatorios.splice(0, 1), 'personas_paquete'))
 			paquete.push(generarValores(aleatorios.splice(0, 1), 'tipo_paquete'))
 			dia.push(paquete)
+			gananciaTotal += costoPaquete(paquete[0][0], paquete[1][0], paquete[2][0])
 		}
 
 		resPaqDias.push(dia)
 	}
 
-	//PER_PAQ = generarValores(aleatorios.splice(0, totalPaquetes), 'personas_paquete')
-	//TIP_PAQ = generarValores(aleatorios.splice(0, totalPaquetes), 'tipo_paquete')
-	//DES_PAQ = generarValores(aleatorios.splice(0, totalPaquetes), 'destino')
+	let totalVendido = paquetesVendidos(resPaqDias)
+	masVisitado(resPaqDias)
+	console.log('ganancia total:', gananciaTotal)
 
 
 	//logs

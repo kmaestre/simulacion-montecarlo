@@ -118,14 +118,15 @@ const tablaResultadoSimulacion = (simulacion) => {
 				<td	colspan="7" style="background-color: #cccccc"> <strong>Dia ${i + 1}</strong> </td>
 			</tr>
 		`
-		console.log(dia)
+
 		let paquetes = dia.slice(1, dia.length)
 		if (!paquetes.length) {
 			filas += `<tr><td colspan="7" class="alert-danger" text-danger> 0 paquetes vendidos </td></tr>`
-		} else {paquetes.forEach((paquete, i) => {
-			filas += `
+		} else {
+			paquetes.forEach((paquete, i) => {
+				filas += `
 				<tr>
-					<td>${i+1}</td>
+					<td>${i + 1}</td>
 					<td>${paquete[1][1]}</td>
 					<td>${paquete[1][0]}</td>
 					<td>${paquete[0][1]}</td>
@@ -134,7 +135,8 @@ const tablaResultadoSimulacion = (simulacion) => {
 					<td>${paquete[2][0]}</td>
 				</tr>
 			`
-		})}
+			})
+		}
 	})
 
 	tabla.innerHTML = filas
