@@ -60,8 +60,7 @@ const congruencialMixto = (seed, k, a, c, i, tabla) => {
 	}
 }
 
-const congruencialMulti = (seed, k, i, tabla) => {
-	let m = 687, a = 999
+const congruencialMulti = (seed, a, m, k, i, tabla) => {
 	let aseed = ((a * (parseInt(seed))))
 	let nuevaSemilla = (aseed % m).toString()
 	let numero = (parseInt(seed)) / m
@@ -76,7 +75,7 @@ const congruencialMulti = (seed, k, i, tabla) => {
 
 	tabla.push([seed, aseed.toString(), nuevaSemilla, numero.toFixed(3)])
 	if (i < n - 1) {
-		return congruencialMulti(nuevaSemilla, k, i + 1, tabla)
+		return congruencialMulti(nuevaSemilla, a, m, k, i + 1, tabla)
 	} else {
 		return tabla
 	}

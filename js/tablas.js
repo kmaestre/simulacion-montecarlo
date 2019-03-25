@@ -17,7 +17,7 @@ const filasHtmlGeneradores = (tabla) => {
 		let td = ''
 		td += `<td>${i + 1}</td>`
 		fila.forEach((el, j) => {
-			td += `<td>${j == 3 ? el.toFixed(3) : el}</td>`
+			td += `<td>${el}</td>`
 		})
 
 		filas += `<tr>${td}</tr>`

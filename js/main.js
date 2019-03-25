@@ -56,9 +56,9 @@ const destinoPaquete = (num) => {
 	return res
 }
 
-const generarValores = (aleatrios, de) => {
+const generarValores = (aleatorios, de) => {
 	let res
-	aleatrios.forEach(num => {
+	aleatorios.forEach(num => {
 		switch (de) {
 			case 'paquetes_dia':
 				res = paquetesDia(num)
@@ -75,6 +75,7 @@ const generarValores = (aleatrios, de) => {
 		}
 	})
 
+	console.log(aleatorios, de, res)
 	return res
 }
 
@@ -116,7 +117,6 @@ const masVisitado = (dias) => {
 
 const nivelSocial = (dias) => {
 	let vendidos = []
-	console.log(dias)
 	dias.forEach((dia, i) => {
 		dia.slice(1, dia.length).forEach(paquete => {
 			let pos = buscarPaquete(vendidos, paquete[2][0])
@@ -192,11 +192,20 @@ const ejecutar = () => {
 
 	if (metodo == 'conmul') {
 		let sem = document.getElementById('sem').value
-		GENERADOS = (congruencialMulti(sem, sem.length, 0, []))
+		let a = parseInt(document.getElementById('a').value)
+		let m = parseInt(document.getElementById('m').value)
+		GENERADOS = (congruencialMulti(sem, a, m, sem.lengthm, 0, []))
 		tablaCongruencialMulti(GENERADOS)
 	}
 
 	let aleatorios = []
+	let validos = true
+	for (let i = 0; i < GENERADOS.length; i++) {
+		if (parseFloat(GENERADOS[i]) >= 1) {
+			alert('Esta semilla no es valida.')
+			return
+		}
+	}
 	GENERADOS.forEach(fila => { aleatorios.push(parseFloat(fila[fila.length - 1])) })
 
 	let resPaqDias = []
@@ -204,6 +213,7 @@ const ejecutar = () => {
 	for (let i = 0; i < DIAS_SIM; i++) {
 		let dia = []
 		dia.push(generarValores(aleatorios.splice(0, 1), 'paquetes_dia'))
+		console.log('----', dia)
 		for (let j = 0; j < dia[0][0]; j++) {
 			let paquete = []
 			paquete.push(generarValores(aleatorios.splice(0, 1), 'destino'))
@@ -213,7 +223,7 @@ const ejecutar = () => {
 			gananciaTotal += costoPaquete(paquete[0][0], paquete[1][0], paquete[2][0])
 		}
 
-		resPaqDias.push(dia)
+		resPaqDias.push(dia)-
 	}
 
 	let totalVendido = paquetesVendidos(resPaqDias)
@@ -238,5 +248,8 @@ const ejecutar = () => {
 
 	document.getElementById('numeros-tab').style.display = 'block'
 	document.getElementById('simulacion-tab').style.display = 'block'
-	$('#simulacion-tab').tab()
+	$('#simulacion-tab').tab('show')
+	document.getElementById('respuesta1').innerText = `${destinoMasVisitado[0][0]}(${destinoMasVisitado[0][1]})`
+	document.getElementById('respuesta2').innerText = gananciaTotal.toFixed(2) + '$'
+	document.getElementById('respuesta3').innerText = `Clase ${mayorNivelSocial[0][0] == 'Turista' ? 'Media' : 'Alta'}`
 }
