@@ -111,8 +111,24 @@ const masVisitado = (dias) => {
 		})
 	})
 
+	return vendidos.sort((a, b) => (b[1] - a[1]))
+}
 
-	console.log('el destino ma visitado:', vendidos.sort((a, b) => (b[1] - a[1]))[0])
+const nivelSocial = (dias) => {
+	let vendidos = []
+	console.log(dias)
+	dias.forEach((dia, i) => {
+		dia.slice(1, dia.length).forEach(paquete => {
+			let pos = buscarPaquete(vendidos, paquete[2][0])
+			if (pos == (-1)) {
+				vendidos.push([paquete[2][0], 1])
+			} else {
+				vendidos[pos][1] += 1
+			}
+		})
+	})
+
+	return vendidos.sort((a, b) => (b[1] - a[1]))
 }
 
 const costoPaquete = (destino, personas, tipo) => {
@@ -201,13 +217,26 @@ const ejecutar = () => {
 	}
 
 	let totalVendido = paquetesVendidos(resPaqDias)
-	masVisitado(resPaqDias)
-	console.log('ganancia total:', gananciaTotal)
+	let destinoMasVisitado = masVisitado(resPaqDias)
 
+	let mayorNivelSocial = nivelSocial(resPaqDias)
+
+	console.log('Paquetes vendidos:', totalVendido)
+	console.log('Destinos más visitados:', `${destinoMasVisitado[0][0]}(${destinoMasVisitado[0][1]}), ${destinoMasVisitado[1][0]}(${destinoMasVisitado[1][1]})`)
+	console.log(`Ganancia Total: ${gananciaTotal.toFixed(2)}$`)
+	console.log(`Nivel Social que mas compra: ${mayorNivelSocial[0][0]}(${mayorNivelSocial[0][1]})`)
 
 	//logs
 	let dias = [];
 	resPaqDias.forEach(dia => dias.push(dia[0]))
 	tablaResultadoPaqDia(dias)
 	tablaResultadoSimulacion(resPaqDias)
+
+	$('#respuestas').modal()
+	document.getElementById('res-paq-ven').innerHTML += `
+	<td colspan="2" class="text-right"><strong>Total:</strong></td><td>${totalVendido}</td>`
+
+	document.getElementById('numeros-tab').style.display = 'block'
+	document.getElementById('simulacion-tab').style.display = 'block'
+	$('#simulacion-tab').tab()
 }

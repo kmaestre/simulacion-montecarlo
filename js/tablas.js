@@ -16,8 +16,8 @@ const filasHtmlGeneradores = (tabla) => {
 	tabla.forEach((fila, i) => {
 		let td = ''
 		td += `<td>${i + 1}</td>`
-		fila.forEach((el) => {
-			td += `<td>${el}</td>`
+		fila.forEach((el, j) => {
+			td += `<td>${j == 3 ? el.toFixed(3) : el}</td>`
 		})
 
 		filas += `<tr>${td}</tr>`
@@ -127,11 +127,11 @@ const tablaResultadoSimulacion = (simulacion) => {
 				filas += `
 				<tr>
 					<td>${i + 1}</td>
-					<td>${paquete[1][1]}</td>
+					<td>${paquete[1][1].toFixed(3)}</td>
 					<td>${paquete[1][0]}</td>
-					<td>${paquete[0][1]}</td>
+					<td>${paquete[0][1].toFixed(3)}</td>
 					<td>${paquete[0][0]}</td>
-					<td>${paquete[2][1]}</td>
+					<td>${paquete[2][1].toFixed(3)}</td>
 					<td>${paquete[2][0]}</td>
 				</tr>
 			`

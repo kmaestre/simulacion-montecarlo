@@ -31,7 +31,8 @@
       </div>
       <div class="form-group">
         <label for="">Dias:</label>
-        <input id="dias" type="text" class="form-control" placeholder="000" oninput="soloNumeros()" onpaste="return false" autocomplete="off">
+        <input id="dias" type="text" class="form-control" placeholder="000" oninput="soloNumeros()"
+          onpaste="return false" autocomplete="off">
       </div>
       <div class="form-group" id="inputs">
       </div>
@@ -42,68 +43,21 @@
     <div class="col p-1 text-center" style="height: 100vh">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
-          <a class="nav-link active" id="numeros-tab" data-toggle="tab" href="#numeros" role="tab"
-            aria-controls="numeros" aria-selected="true">Numeros Generados</a>
+          <a class="nav-link active" id="tablas-finales-tab" data-toggle="tab" href="#tablas-finales" role="tab"
+            aria-controls="tablas-finales" aria-selected="false">Tablas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="numeros-tab" data-toggle="tab" href="#numeros" role="tab" aria-controls="numeros"
+            aria-selected="true" style="display: none;">Numeros Generados</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" id="simulacion-tab" data-toggle="tab" href="#simulacion" role="tab"
-            aria-controls="simulacion" aria-selected="false">Simulacion</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="resultados-tab" data-toggle="tab" href="#resultados" role="tab"
-            aria-controls="resultados" aria-selected="false">Resultados</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="tablas-finales-tab" data-toggle="tab" href="#tablas-finales" role="tab"
-            aria-controls="tablas-finales" aria-selected="false">Tablas</a>
+            aria-controls="simulacion" aria-selected="false" style="display: none;">Simulacion</a>
         </li>
       </ul>
 
       <div class="tab-content">
-        <div class="tab-pane active" id="numeros" role="tabpanel" aria-labelledby="numeros-tab"></div>
-        <div class="tab-pane" id="simulacion" role="tabpanel" aria-labelledby="simulaicon-tab"></div>
-
-        <div class="tab-pane" style="height: 95vh; overflow-y: scroll; overflow-x: hidden" id="resultados"
-          role="tabpanel" aria-labelledby="resultados-tab">
-          <div class="row">
-            <div class="col-5 mx-auto">
-              <strong>Tabla #5. Paquetes por Dia</strong>
-              <table class="table table-sm table-striped table-hover table-bordered">
-                <thead class="bg-dark text-white">
-                  <tr>
-                    <th>Dia</th>
-                    <th>R<sub>n</sub></th>
-                    <th>Paq.Vendidos</th>
-                  </tr>
-                </thead>
-                <tbody id="res-paq-ven">
-
-                </tbody>
-              </table>
-            </div>
-            <div class="col-12">
-              <strong>Tabla #6. Resultados</strong>
-              <table class="table table-sm table-hover table-bordered">
-                <thead class="bg-dark text-white">
-                  <tr>
-                    <th>Paquete</th>
-                    <th>R<sub>n</sub></th>
-                    <th>C. Personas</th>
-                    <th>R<sub>n</sub></th>
-                    <th>Destino</th>
-                    <th>R<sub>n</sub></th>
-                    <th>Boleto</th>
-                  </tr>
-                </thead>
-                <tbody id="res-sim">
-
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-
-        <div class="tab-pane" id="tablas-finales" role="tabpanel" aria-labelledby="tablas-finales-tab"
+        <div class="tab-pane active p-5" id="tablas-finales" role="tabpanel" aria-labelledby="tablas-finales-tab"
           style="overflow-y: scroll; height: 90vh">
           <strong>Tabla #1. Destino Paquete</strong>
           <table class="table table-striped table-sm table-bordered table-hover">
@@ -336,35 +290,95 @@
             </tbody>
           </table>
         </div>
+        <div class="tab-pane p-2" id="numeros" role="tabpanel" aria-labelledby="numeros-tab"></div>
+        <div class="tab-pane p-5" style="height: 95vh; overflow-y: scroll; overflow-x: hidden" id="simulacion"
+          role="tabpanel" aria-labelledby="simulacion-tab">
+          <div class="row">
+            <div class="col-5 mx-auto">
+              <strong>Tabla #5. Paquetes por Dia</strong>
+              <table class="table table-sm table-striped table-hover table-bordered">
+                <thead class="bg-dark text-white">
+                  <tr>
+                    <th>Dia</th>
+                    <th>R<sub>n</sub></th>
+                    <th>Paq.Vendidos</th>
+                  </tr>
+                </thead>
+                <tbody id="res-paq-ven">
+
+                </tbody>
+              </table>
+            </div>
+            <div class="col-12">
+              <strong>Tabla #6. Resultados</strong>
+              <table class="table table-sm table-hover table-bordered">
+                <thead class="bg-dark text-white">
+                  <tr>
+                    <th>Paquete</th>
+                    <th>R<sub>n</sub></th>
+                    <th>C. Personas</th>
+                    <th>R<sub>n</sub></th>
+                    <th>Destino</th>
+                    <th>R<sub>n</sub></th>
+                    <th>Boleto</th>
+                  </tr>
+                </thead>
+                <tbody id="res-sim">
+
+                </tbody>
+              </table>
+            </div>
+            <div class="col-12">
+              <h4>Resultados</h4>
+              <table class="table table-sm table-hover text-left">
+                <tbody>
+                  <tr>
+                    <td>Destino mas visitado:</td>
+                    <td id="respuesta1">0</td>
+                  </tr>
+                  <tr>
+                    <td>Ganancia Total:</td>
+                    <td id="respuesta2">0</td>
+                  </tr>
+                  <tr>
+                    <td>Nivel Socio-economico:</td>
+                    <td id="respuesta3">0</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- Modal -->
-  <!--<div class="modal fade" id="portada" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-body text-center">
-      	<img class="mx-auto mb-1" src="vendor/logo_udo.png" height="75px" style="display: block">
-      	Universidad de Oriente <br>
-      	Nucleo Nueva Esparta <br>
-      	Escuela de Ciencias Aplicadas <br>
-      	Licenciatura en Informatia <br>
-      	Simulacion y Modelos <br>
+  <!--<div class="modal fade" id="portada" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <img class="mx-auto mb-1" src="vendor/logo_udo.png" height="75px" style="display: block">
+          Universidad de Oriente <br>
+          Nucleo Nueva Esparta <br>
+          Escuela de Ciencias Aplicadas <br>
+          Licenciatura en Informatia <br>
+          Simulacion y Modelos <br>
 
-      	<h4 class="my-5">Proyecto #1. Simulacion Monte Carlo</h4>
+          <h4 class="my-5">Proyecto #1. Simulacion Monte Carlo</h4>
 
-      	<strong>Integrantes:</strong> <br>
-      	Miguel Maestre <br>
-      	Luis Salazar <br>
-      	Victor Villagran <br>
+          <strong>Integrantes:</strong> <br>
+          Miguel Maestre <br>
+          Luis Salazar <br>
+          Victor Villagran <br>
 
-      	<p class="mt-5">Guatamare, 19 de Marzo de 2019.</p>
+          <p class="mt-5">Guatamare, 19 de Marzo de 2019.</p>
+        </div>
       </div>
     </div>
-  </div>
-</div>
--->
+  </div> -->
+
   <script src="vendor/jquery-slim.min.js"></script>
   <script src="vendor/popper.min.js"></script>
   <script src="vendor/bootstrap.min.js"></script>
