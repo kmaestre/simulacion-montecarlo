@@ -6,7 +6,7 @@ const extraerCentro = (y, k) => {
 const cuadradoMedio = (seed, k, i, tabla) => {
 	let cuadrado = (parseInt(seed) ** 2).toString()
 	let nuevaSemilla = extraerCentro(cuadrado, k);
-	tabla.push([seed, cuadrado, nuevaSemilla, (nuevaSemilla / (10 ** k).toFixed(3))])
+	tabla.push([seed, cuadrado, nuevaSemilla, (nuevaSemilla / (10 ** k)).toFixed(3)])
 	if (i < n - 1) {
 		return cuadradoMedio(nuevaSemilla, k, i + 1, tabla)
 	} else {
@@ -17,7 +17,7 @@ const cuadradoMedio = (seed, k, i, tabla) => {
 const productoMedio = (seed1, seed2, k, i, tabla) => {
 	let producto = (parseInt(seed1) * parseInt(seed2)).toString()
 	let nuevaSemilla = extraerCentro(producto, k)
-	tabla.push([seed1, seed2, producto, nuevaSemilla, (nuevaSemilla / 10 ** k).toFixed(3)])
+	tabla.push([seed1, seed2, producto, nuevaSemilla, (nuevaSemilla / (10 ** k)).toFixed(3)])
 	if (i < n - 1) {
 		return productoMedio(seed2, nuevaSemilla, k, i + 1, tabla)
 	} else {
@@ -28,7 +28,7 @@ const productoMedio = (seed1, seed2, k, i, tabla) => {
 const productoMedioVariado = (seed, a, k, i, tabla) => {
 	let producto = (parseInt(seed) * parseInt(a)).toString()
 	let nuevaSemilla = extraerCentro(producto, k)
-	tabla.push([seed, producto, nuevaSemilla, (nuevaSemilla / 10 ** k).toFixed(3)])
+	tabla.push([seed, producto, nuevaSemilla, (nuevaSemilla / (10 ** k)).toFixed(3)])
 
 	if (i < n - 1) {
 		return productoMedioVariado(nuevaSemilla, a, k, i + 1, tabla)

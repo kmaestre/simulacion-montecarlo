@@ -16,7 +16,7 @@ const filasHtmlGeneradores = (tabla) => {
 	tabla.forEach((fila, i) => {
 		let td = ''
 		td += `<td>${i + 1}</td>`
-		fila.forEach((el, j) => {
+		fila.forEach((el) => {
 			td += `<td>${el}</td>`
 		})
 
@@ -48,9 +48,8 @@ const tablaProductoMedio = (tabla) => {
       <th>X<sub>n</sub>*X<sub>n-1</sub></th>
       <th>X<sub>n+1</sub></th>
       <th>R<sub>n+1</sub></th>
-    </tr>
+		</tr>
 	`
-
 	$('div#numeros').html(tablaHtml(headers, filasHtmlGeneradores(tabla)))
 }
 

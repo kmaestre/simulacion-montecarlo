@@ -75,7 +75,6 @@ const generarValores = (aleatorios, de) => {
 		}
 	})
 
-	console.log(aleatorios, de, res)
 	return res
 }
 
@@ -199,21 +198,20 @@ const ejecutar = () => {
 	}
 
 	let aleatorios = []
-	let validos = true
-	for (let i = 0; i < GENERADOS.length; i++) {
-		if (parseFloat(GENERADOS[i]) >= 1) {
-			alert('Esta semilla no es valida.')
-			return
-		}
-	}
+	
 	GENERADOS.forEach(fila => { aleatorios.push(parseFloat(fila[fila.length - 1])) })
+
+	aleatorios.forEach(num => {
+		if (num >= 1) {
+			alert('Alguno(s) de los numeros generados no cumplen con los requerimientos. Por favor intente cambaindo los datos de entrada')
+		}
+	})
 
 	let resPaqDias = []
 	let gananciaTotal = 0
 	for (let i = 0; i < DIAS_SIM; i++) {
 		let dia = []
 		dia.push(generarValores(aleatorios.splice(0, 1), 'paquetes_dia'))
-		console.log('----', dia)
 		for (let j = 0; j < dia[0][0]; j++) {
 			let paquete = []
 			paquete.push(generarValores(aleatorios.splice(0, 1), 'destino'))
@@ -223,18 +221,13 @@ const ejecutar = () => {
 			gananciaTotal += costoPaquete(paquete[0][0], paquete[1][0], paquete[2][0])
 		}
 
-		resPaqDias.push(dia)-
+		resPaqDias.push(dia)
 	}
 
 	let totalVendido = paquetesVendidos(resPaqDias)
 	let destinoMasVisitado = masVisitado(resPaqDias)
 
 	let mayorNivelSocial = nivelSocial(resPaqDias)
-
-	console.log('Paquetes vendidos:', totalVendido)
-	console.log('Destinos más visitados:', `${destinoMasVisitado[0][0]}(${destinoMasVisitado[0][1]}), ${destinoMasVisitado[1][0]}(${destinoMasVisitado[1][1]})`)
-	console.log(`Ganancia Total: ${gananciaTotal.toFixed(2)}$`)
-	console.log(`Nivel Social que mas compra: ${mayorNivelSocial[0][0]}(${mayorNivelSocial[0][1]})`)
 
 	//logs
 	let dias = [];
