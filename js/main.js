@@ -8,9 +8,11 @@ let TIP_PAQ = []
 const paquetesDia = (num) => {
 	let paqDias = tabla_paquetes_vendidos
 	let res
+
 	for (let i = 0; i < paqDias.length; i++) {
 		if ((num >= paqDias[i][3][0]) && (num <= paqDias[i][3][1])) {
 			res = [paqDias[i][0], num]
+			break;
 		}
 	}
 
@@ -19,11 +21,11 @@ const paquetesDia = (num) => {
 
 const tipoPaquete = (num) => {
 	let tipos = tabla_tipo
-	let res = []
+	let res
+	
 	for (let i = 0; i < tipos.length; i++) {
 		if ((num >= tipos[i][3][0]) && (num <= tipos[i][3][1])) {
-			res.push(tipos[i][0], num)
-			break;
+			res = [tipos[i][0], num]
 		}
 	}
 
@@ -57,24 +59,23 @@ const destinoPaquete = (num) => {
 }
 
 const generarValores = (aleatorios, de) => {
-	let res
+	let res = []
 	aleatorios.forEach(num => {
 		switch (de) {
 			case 'paquetes_dia':
-				res = paquetesDia(num)
+				res.push(paquetesDia(num))
 				break
 			case 'personas_paquete':
-				res = personasPaquete(num)
+				res.push(personasPaquete(num))
 				break
 			case 'tipo_paquete':
-				res = tipoPaquete(num)
+				res.push(tipoPaquete(num))
 				break
 			case 'destino':
-				res = destinoPaquete(num)
+				res.push(destinoPaquete(num))
 				break
 		}
 	})
-
 	return res
 }
 
@@ -93,7 +94,7 @@ const buscarPaquete = (vendidos, destino) => {
 	for (let i = 0; i < vendidos.length; i++) {
 		if (vendidos[i][0] == destino) {
 			return i
-		};
+		}
 	}
 	return (-1)
 }
@@ -101,12 +102,12 @@ const buscarPaquete = (vendidos, destino) => {
 const masVisitado = (dias) => {
 	let vendidos = []
 	dias.forEach((dia, i) => {
-		dia.slice(1, dia.length).forEach(paquete => {
-			let pos = buscarPaquete(vendidos, paquete[0][0])
+		dia.forEach(paquete => {
+			let pos = buscarPaquete(vendidos, paquete[1][0])
 			if (pos == (-1)) {
-				vendidos.push([paquete[0][0], paquete[1][0]])
+				vendidos.push([paquete[1][0], paquete[0][0]])
 			} else {
-				vendidos[pos][1] += paquete[1][0]
+				vendidos[pos][1] += paquete[0][0]
 			}
 		})
 	})
@@ -117,7 +118,7 @@ const masVisitado = (dias) => {
 const nivelSocial = (dias) => {
 	let vendidos = []
 	dias.forEach((dia, i) => {
-		dia.slice(1, dia.length).forEach(paquete => {
+		dia.forEach(paquete => {
 			let pos = buscarPaquete(vendidos, paquete[2][0])
 			if (pos == (-1)) {
 				vendidos.push([paquete[2][0], 1])
@@ -168,6 +169,7 @@ const ejecutar = () => {
 			alert('La semilla y la constante "a" deben tener la misma cantidad de digitos.')
 			return
 		}
+		GENERADOS = productoMedioVariado(GENERADOS)
 		tablaProductoMedioVariado(GENERADOS)
 	}
 	if (metodo == 'conmix') {
@@ -209,40 +211,48 @@ const ejecutar = () => {
 
 	let resPaqDias = []
 	let gananciaTotal = 0
-	for (let i = 0; i < DIAS_SIM; i++) {
-		let dia = []
-		dia.push(generarValores(aleatorios.splice(0, 1), 'paquetes_dia'))
-		for (let j = 0; j < dia[0][0]; j++) {
-			let paquete = []
-			paquete.push(generarValores(aleatorios.splice(0, 1), 'destino'))
-			paquete.push(generarValores(aleatorios.splice(0, 1), 'personas_paquete'))
-			paquete.push(generarValores(aleatorios.splice(0, 1), 'tipo_paquete'))
-			dia.push(paquete)
-			gananciaTotal += costoPaquete(paquete[0][0], paquete[1][0], paquete[2][0])
-		}
 
-		resPaqDias.push(dia)
-	}
+	PAQ_DIA = generarValores(aleatorios.splice(0, DIAS_SIM), 'paquetes_dia')
+	
+	let totalPaquetes = 0
+	PAQ_DIA.forEach(dia => {
+		totalPaquetes += dia[0]
+	})
 
-	let totalVendido = paquetesVendidos(resPaqDias)
+
+	PER_PAQ = generarValores(aleatorios.splice(0, totalPaquetes), 'personas_paquete')
+	TIP_PAQ = generarValores(aleatorios.splice(0, totalPaquetes), 'tipo_paquete')
+ 	DES_PAQ = generarValores(aleatorios.splice(0, totalPaquetes), 'destino')
+
+  PAQ_DIA.forEach(dia => {
+  	let res = []
+  	for (let i = 0; i < dia[0]; i++) {
+  		let paq = [PER_PAQ.splice(0, 1)[0], DES_PAQ.splice(0, 1)[0], TIP_PAQ.splice(0, 1)[0]]
+  		res.push(paq)
+  		gananciaTotal += costoPaquete(paq[1][0], paq[0][0], paq[2][0])
+  	}
+  	resPaqDias.push(res)
+  })
+
 	let destinoMasVisitado = masVisitado(resPaqDias)
-
 	let mayorNivelSocial = nivelSocial(resPaqDias)
 
-	//logs
-	let dias = [];
-	resPaqDias.forEach(dia => dias.push(dia[0]))
-	tablaResultadoPaqDia(dias)
+	console.log(resPaqDias)
+
+	tablaResultadoPaqDia(PAQ_DIA)
 	tablaResultadoSimulacion(resPaqDias)
 
-	$('#respuestas').modal()
+
+	/*$('#respuestas').modal()
 	document.getElementById('res-paq-ven').innerHTML += `
 	<td colspan="2" class="text-right"><strong>Total:</strong></td><td>${totalVendido}</td>`
-
+*/
 	document.getElementById('numeros-tab').style.display = 'block'
 	document.getElementById('simulacion-tab').style.display = 'block'
 	$('#simulacion-tab').tab('show')
+	
 	document.getElementById('respuesta1').innerText = `${destinoMasVisitado[0][0]}(${destinoMasVisitado[0][1]})`
 	document.getElementById('respuesta2').innerText = gananciaTotal.toFixed(2) + '$'
 	document.getElementById('respuesta3').innerText = `Clase ${mayorNivelSocial[0][0] == 'Turista' ? 'Media' : 'Alta'}`
+	
 }
