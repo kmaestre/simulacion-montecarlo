@@ -99,7 +99,7 @@ const tablaResultadoPaqDia = (dias) => {
 	dias.forEach((dia, i) => {
 		filas += `<tr>
 			<td>${i + 1}</td>
-			<td>${dia[1]}</td>
+			<td>${dia[1].toFixed(3)}</td>
 			<td>${dia[0]}</td>
 		</tr>`
 	})
