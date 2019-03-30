@@ -143,6 +143,19 @@ const costoPaquete = (destino, personas, tipo) => {
 	return res
 }
 
+const repetidos = (numeros) => {
+	let res = false
+	numeros.forEach((num, i) => {
+		numeros.forEach((num2, j) => {
+			if (j != i) {
+				if (num == num2) res = true
+			}
+		})
+	})
+
+	return res
+}
+
 const ejecutar = () => {
 	DIAS_SIM = parseInt(document.getElementById('dias').value)
 	n = parseInt(DIAS_SIM) * 7 * 3
@@ -224,6 +237,10 @@ const ejecutar = () => {
 	TIP_PAQ = generarValores(aleatorios.slice(0, totalPaquetes), 'tipo_paquete')
  	DES_PAQ = generarValores(aleatorios.slice(0, totalPaquetes), 'destino')
 
+ 	if (repetidos([...aleatorios.slice(0, DIAS_SIM + totalPaquetes)])) {
+ 		alert('La secuencia de numeros generados contiene numeros repetidos. Por favor intente con una semilla diferente')
+ 		return
+ 	}
 
   PAQ_DIA.forEach(dia => {
   	let res = []
@@ -259,9 +276,7 @@ const ejecutar = () => {
 
 	tablaResultadoPaqDia(PAQ_DIA)
 	tablaResultadoSimulacion(resPaqDias)
-
-	alert('total paquetes' + totalPaquetes)
-
+	
 	document.getElementById('numeros-tab').style.display = 'block'
 	document.getElementById('simulacion-tab').style.display = 'block'
 	$('#simulacion-tab').tab('show')
