@@ -169,7 +169,7 @@ const ejecutar = () => {
 			alert('La semilla y la constante "a" deben tener la misma cantidad de digitos.')
 			return
 		}
-		GENERADOS = productoMedioVariado(GENERADOS)
+		GENERADOS = productoMedioVariado(sem, a, sem.length, 0, [])
 		tablaProductoMedioVariado(GENERADOS)
 	}
 	if (metodo == 'conmix') {
@@ -212,7 +212,7 @@ const ejecutar = () => {
 	let resPaqDias = []
 	let gananciaTotal = 0
 
-	PAQ_DIA = generarValores(aleatorios.splice(0, DIAS_SIM), 'paquetes_dia')
+	PAQ_DIA = generarValores(aleatorios.slice(0, DIAS_SIM), 'paquetes_dia')
 	
 	let totalPaquetes = 0
 	PAQ_DIA.forEach(dia => {
@@ -220,16 +220,18 @@ const ejecutar = () => {
 	})
 
 
-	PER_PAQ = generarValores(aleatorios.splice(0, totalPaquetes), 'personas_paquete')
-	TIP_PAQ = generarValores(aleatorios.splice(0, totalPaquetes), 'tipo_paquete')
- 	DES_PAQ = generarValores(aleatorios.splice(0, totalPaquetes), 'destino')
+	PER_PAQ = generarValores(aleatorios.slice(0, totalPaquetes), 'personas_paquete')
+	TIP_PAQ = generarValores(aleatorios.slice(0, totalPaquetes), 'tipo_paquete')
+ 	DES_PAQ = generarValores(aleatorios.slice(0, totalPaquetes), 'destino')
+
 
   PAQ_DIA.forEach(dia => {
   	let res = []
   	for (let i = 0; i < dia[0]; i++) {
   		let paq = [PER_PAQ.splice(0, 1)[0], DES_PAQ.splice(0, 1)[0], TIP_PAQ.splice(0, 1)[0]]
+  		paq.push(costoPaquete(paq[1][0], paq[0][0], paq[2][0]))
   		res.push(paq)
-  		gananciaTotal += costoPaquete(paq[1][0], paq[0][0], paq[2][0])
+  		gananciaTotal += paq[3]
   	}
   	resPaqDias.push(res)
   })
@@ -237,16 +239,29 @@ const ejecutar = () => {
 	let destinoMasVisitado = masVisitado(resPaqDias)
 	let mayorNivelSocial = nivelSocial(resPaqDias)
 
+	if (metodo == 'cuamed') {
+		tablaCuadradoMedio(GENERADOS.slice(0, DIAS_SIM + totalPaquetes))
+	}
+	if (metodo == 'promed') {
+		tablaProductoMedio(GENERADOS.slice(0, DIAS_SIM + totalPaquetes))
+	}
+	if (metodo == 'promed2') {
+		tablaProductoMedioVariado(GENERADOS.slice(0, DIAS_SIM + totalPaquetes))
+	}
+	if (metodo == 'conmix') {
+		tablaCongruencialMixto(GENERADOS.slice(0, DIAS_SIM + totalPaquetes))
+	}
+	if (metodo == 'conmul') {
+		tablaCongruencialMulti(GENERADOS.slice(0, DIAS_SIM + totalPaquetes))
+	}
+
 	console.log(resPaqDias)
 
 	tablaResultadoPaqDia(PAQ_DIA)
 	tablaResultadoSimulacion(resPaqDias)
 
+	alert('total paquetes' + totalPaquetes)
 
-	/*$('#respuestas').modal()
-	document.getElementById('res-paq-ven').innerHTML += `
-	<td colspan="2" class="text-right"><strong>Total:</strong></td><td>${totalVendido}</td>`
-*/
 	document.getElementById('numeros-tab').style.display = 'block'
 	document.getElementById('simulacion-tab').style.display = 'block'
 	$('#simulacion-tab').tab('show')

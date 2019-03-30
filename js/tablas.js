@@ -114,11 +114,11 @@ const tablaResultadoSimulacion = (simulacion) => {
 	simulacion.forEach((dia, i) => {
 		filas += `
 			<tr>
-				<td	colspan="7" style="background-color: #cccccc"> <strong>Dia ${i + 1}</strong> </td>
+				<td	colspan="8" style="background-color: #cccccc"> <strong>Dia ${i + 1}</strong> </td>
 			</tr>
 		`
 		if (!dia.length) {
-			filas += `<tr><td colspan="7" class="alert-danger" text-danger> 0 paquetes vendidos </td></tr>`
+			filas += `<tr><td colspan="8" class="alert-danger" text-danger> 0 paquetes vendidos </td></tr>`
 		} else {
 			dia.forEach((paquete, i) => {
 				filas += `
@@ -130,6 +130,7 @@ const tablaResultadoSimulacion = (simulacion) => {
 					<td>${paquete[1][0]}</td>
 					<td>${paquete[2][1].toFixed(3)}</td>
 					<td>${paquete[2][0]}</td>
+					<td>${paquete[3]}</td>
 				</tr>
 			`
 			})
