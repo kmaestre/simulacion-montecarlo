@@ -170,7 +170,7 @@ const ejecutar = () => {
 		let sem2 = document.getElementById('sem2').value
 		if (sem1.length != sem2.length) {
 			alert('Las semillas deben tener la misma cantidad de digitos.')
-			return
+			return false
 		}
 		GENERADOS = productoMedio(sem1, sem2, sem1.length, 0, [])
 		tablaProductoMedio(GENERADOS)
@@ -180,7 +180,7 @@ const ejecutar = () => {
 		let a = document.getElementById('a').value
 		if (sem.length != a.length) {
 			alert('La semilla y la constante "a" deben tener la misma cantidad de digitos.')
-			return
+			return false
 		}
 		GENERADOS = productoMedioVariado(sem, a, sem.length, 0, [])
 		tablaProductoMedioVariado(GENERADOS)
@@ -192,12 +192,12 @@ const ejecutar = () => {
 
 		if (!(a % 2) || (!(a % 3) && !(a % 5))) {
 			alert('El valor de "a" no cumple las condiciones necesarias, por favor introduzca un valor valido.')
-			return
+			return false
 		}
 
 		if (c % 8 != 5) {
 			alert('El valor de "c" no cumple las condiciones necesarias, por favor introduzca un valor valido.')
-			return
+			return false
 		}
 
 		GENERADOS = (congruencialMixto(sem, sem.length, a, c, 0, []))
@@ -219,6 +219,7 @@ const ejecutar = () => {
 	aleatorios.forEach(num => {
 		if (num >= 1) {
 			alert('Alguno(s) de los numeros generados no cumplen con los requerimientos. Por favor intente cambaindo los datos de entrada')
+			return false
 		}
 	})
 
@@ -239,7 +240,7 @@ const ejecutar = () => {
 
  	if (repetidos([...aleatorios.slice(0, DIAS_SIM + totalPaquetes)])) {
  		alert('La secuencia de numeros generados contiene numeros repetidos. Por favor intente con una semilla diferente')
- 		return
+ 		return false
  	}
 
   PAQ_DIA.forEach(dia => {

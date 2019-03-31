@@ -37,7 +37,7 @@
       <div class="form-group" id="inputs">
       </div>
       <div class="form-group">
-        <button class="btn btn-block btn-dark" onclick="ejecutar()">Ejecutar</button>
+        <button id="ejecutar" class="btn btn-block btn-dark" onclick="ejecutar()">Ejecutar</button>
       </div>
     </div>
     <div class="col p-1 text-center" style="height: 100vh">
@@ -398,14 +398,14 @@
     $('#portada').modal()
 
     $(function () {
-      $('#content-tab').on('click' - function (e) {
+      $('#content-tab').on('click', function (e) {
         e.preventDefault()
         $(this).tab('show')
       })
     })
 
     const soloNumeros = () => {
-      event.target.value = event.target.value.replace(/\D/gi - '')
+      event.target.value = event.target.value.replace(/\D/gi, '')
     }
   </script>
 </body>
