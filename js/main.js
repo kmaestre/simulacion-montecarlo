@@ -226,7 +226,8 @@ const ejecutar = () => {
 	let resPaqDias = []
 	let gananciaTotal = 0
 
-	PAQ_DIA = generarValores(aleatorios.slice(0, DIAS_SIM), 'paquetes_dia')
+	let numDias = aleatorios.splice(0, DIAS_SIM)
+	PAQ_DIA = generarValores(numDias, 'paquetes_dia')
 	
 	let totalPaquetes = 0
 	PAQ_DIA.forEach(dia => {
@@ -234,14 +235,18 @@ const ejecutar = () => {
 	})
 
 
-	PER_PAQ = generarValores(aleatorios.slice(0, totalPaquetes), 'personas_paquete')
-	TIP_PAQ = generarValores(aleatorios.slice(0, totalPaquetes), 'tipo_paquete')
- 	DES_PAQ = generarValores(aleatorios.slice(0, totalPaquetes), 'destino')
+	let numPer = aleatorios.splice(0, totalPaquetes)
+	let numTipo = aleatorios.splice(0, totalPaquetes)
+	let numDest = aleatorios.splice(0, totalPaquetes)
 
- 	if (repetidos([...aleatorios.slice(0, DIAS_SIM + totalPaquetes)])) {
+	PER_PAQ = generarValores(numPer, 'personas_paquete')
+ 	DES_PAQ = generarValores(numDest, 'destino')
+	TIP_PAQ = generarValores(numTipo, 'tipo_paquete')
+
+	/*if (repetidos([...numPer, ...numTipo, ...numDest])) {
  		alert('La secuencia de numeros generados contiene numeros repetidos. Por favor intente con una semilla diferente')
  		return false
- 	}
+ 	}*/
 
   PAQ_DIA.forEach(dia => {
   	let res = []
@@ -258,19 +263,19 @@ const ejecutar = () => {
 	let mayorNivelSocial = nivelSocial(resPaqDias)
 
 	if (metodo == 'cuamed') {
-		tablaCuadradoMedio(GENERADOS.slice(0, DIAS_SIM + totalPaquetes))
+		tablaCuadradoMedio(GENERADOS.slice(0, DIAS_SIM + (totalPaquetes*3)))
 	}
 	if (metodo == 'promed') {
-		tablaProductoMedio(GENERADOS.slice(0, DIAS_SIM + totalPaquetes))
+		tablaProductoMedio(GENERADOS.slice(0, DIAS_SIM + (totalPaquetes*3)))
 	}
 	if (metodo == 'promed2') {
-		tablaProductoMedioVariado(GENERADOS.slice(0, DIAS_SIM + totalPaquetes))
+		tablaProductoMedioVariado(GENERADOS.slice(0, DIAS_SIM + (totalPaquetes*3)))
 	}
 	if (metodo == 'conmix') {
-		tablaCongruencialMixto(GENERADOS.slice(0, DIAS_SIM + totalPaquetes))
+		tablaCongruencialMixto(GENERADOS.slice(0, DIAS_SIM + (totalPaquetes*3)))
 	}
 	if (metodo == 'conmul') {
-		tablaCongruencialMulti(GENERADOS.slice(0, DIAS_SIM + totalPaquetes))
+		tablaCongruencialMulti(GENERADOS.slice(0, DIAS_SIM + (totalPaquetes*3)))
 	}
 
 	console.log(resPaqDias)
