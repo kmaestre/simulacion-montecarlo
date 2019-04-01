@@ -1,5 +1,5 @@
 const tablaHtml = (headers, filas) => {
-	return `<table class="table table-sm table-striped table-hover table-bordered">
+	return `<table class="col-8 mx-auto table table-sm table-striped table-hover table-bordered">
 	    <thead class="bg-dark text-white">
 	       ${headers}
 	    </thead>

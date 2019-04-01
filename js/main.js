@@ -218,17 +218,11 @@ const ejecutar = () => {
 	
 	GENERADOS.forEach(fila => { aleatorios.push(parseFloat(fila[fila.length - 1])) })
 
-	aleatorios.forEach(num => {
-		if (num >= 1) {
-			alert('Alguno(s) de los numeros generados no cumplen con los requerimientos. Por favor intente cambaindo los datos de entrada')
-			return false
-		}
-	})
+	
 
 	let resPaqDias = []
 	let gananciaTotal = 0
 
-	let aleatorios2 = aleatorios.copyWithin()
 	let numDias = aleatorios.splice(0, DIAS_SIM)
 	PAQ_DIA = generarValores(numDias, 'paquetes_dia')
 	
@@ -246,8 +240,17 @@ const ejecutar = () => {
  	DES_PAQ = generarValores(numDest, 'destino')
 	TIP_PAQ = generarValores(numTipo, 'tipo_paquete')
 
-	
-	if (repetidos(aleatorios2)) {
+	let usados = [...numDias, ...numPer, ...numTipo, ...numDest]
+
+	usados.forEach((num, i) => {
+		if (num >= 1 || num < 0) {
+			console.log(num, i)
+			alert('Alguno(s) de los numeros generados no cumplen con los requerimientos. Por favor intente modificando los parametros de entrada')
+			return false
+		}
+	})
+
+	if (repetidos(usados)) {
  		alert('La secuencia de numeros generados contiene numeros repetidos. Por favor intente con una semilla diferente')
  		return false
  	}
@@ -286,6 +289,8 @@ const ejecutar = () => {
 
 	tablaResultadoPaqDia(PAQ_DIA)
 	tablaResultadoSimulacion(resPaqDias)
+
+	document.getElementById('res-paq-ven').innerHTML += `<td colspan="3">Total: ${totalPaquetes}</td>`
 	
 	document.getElementById('numeros-tab').style.display = 'block'
 	document.getElementById('simulacion-tab').style.display = 'block'
