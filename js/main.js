@@ -148,7 +148,9 @@ const repetidos = (numeros) => {
 	numeros.forEach((num, i) => {
 		numeros.forEach((num2, j) => {
 			if (j != i) {
-				if (num == num2) res = true
+				if (num == num2) {
+					res = true
+				}
 			}
 		})
 	})
@@ -226,6 +228,7 @@ const ejecutar = () => {
 	let resPaqDias = []
 	let gananciaTotal = 0
 
+	let aleatorios2 = aleatorios.copyWithin()
 	let numDias = aleatorios.splice(0, DIAS_SIM)
 	PAQ_DIA = generarValores(numDias, 'paquetes_dia')
 	
@@ -243,10 +246,11 @@ const ejecutar = () => {
  	DES_PAQ = generarValores(numDest, 'destino')
 	TIP_PAQ = generarValores(numTipo, 'tipo_paquete')
 
-	/*if (repetidos([...numPer, ...numTipo, ...numDest])) {
+	
+	if (repetidos(aleatorios2)) {
  		alert('La secuencia de numeros generados contiene numeros repetidos. Por favor intente con una semilla diferente')
  		return false
- 	}*/
+ 	}
 
   PAQ_DIA.forEach(dia => {
   	let res = []
