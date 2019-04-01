@@ -252,7 +252,13 @@ const ejecutar = () => {
 
 	if (repetidos(usados)) {
  		alert('La secuencia de numeros generados contiene numeros repetidos. Por favor intente con una semilla diferente')
- 		return false
+ 		//return false
+ 	}
+
+ 	if (kolmogorov(usados)) {
+ 		alert('prueba kolmogorov: ' + true)
+ 	} else {
+ 		alert('prueba kolmogorov: ' + false)
  	}
 
   PAQ_DIA.forEach(dia => {
