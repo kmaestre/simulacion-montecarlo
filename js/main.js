@@ -244,21 +244,13 @@ const ejecutar = () => {
 
 	usados.forEach((num, i) => {
 		if (num >= 1 || num < 0) {
-			console.log(num, i)
 			alert('Alguno(s) de los numeros generados no cumplen con los requerimientos. Por favor intente modificando los parametros de entrada')
 			return false
 		}
 	})
 
-	if (repetidos(usados)) {
- 		alert('La secuencia de numeros generados contiene numeros repetidos. Por favor intente con una semilla diferente')
- 		//return false
- 	}
-
- 	if (kolmogorov(usados)) {
- 		alert('prueba kolmogorov: ' + true)
- 	} else {
- 		alert('prueba kolmogorov: ' + false)
+ 	if (!kolmogorov(usados)) {
+ 		alert('Los numeros generados no satisfacen las condiciones de aleatoriedad.')
  	}
 
   PAQ_DIA.forEach(dia => {
@@ -291,8 +283,6 @@ const ejecutar = () => {
 		tablaCongruencialMulti(GENERADOS.slice(0, DIAS_SIM + (totalPaquetes*3)))
 	}
 
-	console.log(resPaqDias)
-
 	tablaResultadoPaqDia(PAQ_DIA)
 	tablaResultadoSimulacion(resPaqDias)
 
@@ -302,8 +292,10 @@ const ejecutar = () => {
 	document.getElementById('simulacion-tab').style.display = 'block'
 	$('#simulacion-tab').tab('show')
 	
-	document.getElementById('respuesta1').innerText = `${destinoMasVisitado[0][0]}(${destinoMasVisitado[0][1]})`
-	document.getElementById('respuesta2').innerText = gananciaTotal.toFixed(2) + '$'
-	document.getElementById('respuesta3').innerText = `Clase ${mayorNivelSocial[0][0] == 'Turista' ? 'Media' : 'Alta'}`
+
+	console.log(mayorNivelSocial)
+	document.getElementById('respuesta1').innerText = `${destinoMasVisitado[0][0]} (${destinoMasVisitado[0][1]} personas)`
+	document.getElementById('respuesta2').innerText = 'Se genero un ingreso total de ' + gananciaTotal.toFixed(2) + '$ por venta de paquetes.'
+	document.getElementById('respuesta3').innerText = `Clase ${mayorNivelSocial[0][0] == 'Turista' ? 'Media' : 'Alta'} (${mayorNivelSocial[0][1]} paquetes)`
 	
 }
