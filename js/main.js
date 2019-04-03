@@ -171,7 +171,7 @@ const ejecutar = () => {
 		let sem1 = document.getElementById('sem1').value
 		let sem2 = document.getElementById('sem2').value
 		if (sem1.length != sem2.length) {
-			alert('Las semillas deben tener la misma cantidad de digitos.')
+			alert('Las semillas deben tener la misma cantidad de dígitos.')
 			return false
 		}
 		GENERADOS = productoMedio(sem1, sem2, sem1.length, 0, [])
@@ -181,7 +181,7 @@ const ejecutar = () => {
 		let sem = document.getElementById('sem').value
 		let a = document.getElementById('a').value
 		if (sem.length != a.length) {
-			alert('La semilla y la constante "a" deben tener la misma cantidad de digitos.')
+			alert('La semilla y la constante "a" deben tener la misma cantidad de dígitos.')
 			return false
 		}
 		GENERADOS = productoMedioVariado(sem, a, sem.length, 0, [])
@@ -193,7 +193,7 @@ const ejecutar = () => {
 		let c = parseInt(document.getElementById('c').value)
 
 		if (!(a % 2) || (!(a % 3) && !(a % 5))) {
-			alert('El valor de "a" no cumple las condiciones necesarias, por favor introduzca un valor valido.')
+			alert('El valor de "a" no cumple las condiciones necesarias, por favor introduzca un valor válido.')
 			return false
 		}
 
@@ -244,13 +244,13 @@ const ejecutar = () => {
 
 	usados.forEach((num, i) => {
 		if (num >= 1 || num < 0) {
-			alert('Alguno(s) de los numeros generados no cumplen con los requerimientos. Por favor intente modificando los parametros de entrada')
+			alert('Alguno(s) de los números generados no cumplen con los requerimientos. Por favor, intente modificando los parámetros de entrada')
 			return false
 		}
 	})
 
  	if (!kolmogorov(usados)) {
- 		alert('Los numeros generados no satisfacen las condiciones de aleatoriedad.')
+ 		alert('Los números generados no satisfacen las condiciones de aleatoriedad.')
  	}
 
   PAQ_DIA.forEach(dia => {
@@ -295,7 +295,7 @@ const ejecutar = () => {
 
 	console.log(mayorNivelSocial)
 	document.getElementById('respuesta1').innerText = `${destinoMasVisitado[0][0]} (${destinoMasVisitado[0][1]} personas)`
-	document.getElementById('respuesta2').innerText = 'Se genero un ingreso total de ' + gananciaTotal.toFixed(2) + '$ por venta de paquetes.'
+	document.getElementById('respuesta2').innerText = 'Se generó un ingreso total de ' + gananciaTotal.toFixed(2) + '$ por venta de paquetes.'
 	document.getElementById('respuesta3').innerText = `Clase ${mayorNivelSocial[0][0] == 'Turista' ? 'Media' : 'Alta'} (${mayorNivelSocial[0][1]} paquetes)`
 	
 }
