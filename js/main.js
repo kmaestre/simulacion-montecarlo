@@ -158,8 +158,20 @@ const repetidos = (numeros) => {
 	return res
 }
 
+const errorNoti = (err) => {
+	alertify.error(err, 0)
+}
+
 const ejecutar = () => {
+	let errores = []
 	DIAS_SIM = parseInt(document.getElementById('dias').value)
+
+	
+	if (!DIAS_SIM) {
+		errorNoti('Dias debe ser mayor que 0.')
+		return false
+	}
+
 	n = parseInt(DIAS_SIM) * 7 * 3
 
 	if (metodo == 'cuamed') {
@@ -171,7 +183,7 @@ const ejecutar = () => {
 		let sem1 = document.getElementById('sem1').value
 		let sem2 = document.getElementById('sem2').value
 		if (sem1.length != sem2.length) {
-			alert('Las semillas deben tener la misma cantidad de dígitos.')
+			errorNoti('Las semillas deben tener la misma cantidad de dígitos.')
 			return false
 		}
 		GENERADOS = productoMedio(sem1, sem2, sem1.length, 0, [])
@@ -181,7 +193,7 @@ const ejecutar = () => {
 		let sem = document.getElementById('sem').value
 		let a = document.getElementById('a').value
 		if (sem.length != a.length) {
-			alert('La semilla y la constante "a" deben tener la misma cantidad de dígitos.')
+			errorNoti('La semilla y la constante "a" deben tener la misma cantidad de dígitos.')
 			return false
 		}
 		GENERADOS = productoMedioVariado(sem, a, sem.length, 0, [])
@@ -191,14 +203,29 @@ const ejecutar = () => {
 		let sem = document.getElementById('sem').value
 		let a = parseInt(document.getElementById('a').value)
 		let c = parseInt(document.getElementById('c').value)
+		let m = parseInt(document.getElementById('m').value)
 
-		if (!(a % 2) || (!(a % 3) && !(a % 5))) {
-			alert('El valor de "a" no cumple las condiciones necesarias, por favor introduzca un valor válido.')
+		/*
+			a > 0; impar m % 3 0 5 != 0; (2^k)+1 k >= 2;
+			c > 0; c % 8 = 5; primo a m; mcd(c, m) == 1;
+			m > a; m > c; m > x0;
+			x0 > 0
+		*/
+
+		if (!(a % 2)) {
+			errorNoti('"a" debe ser impar.')
 			return false
 		}
-
+		if (!(a % 3) && (!a % 5)) {
+			errorNoti('"a" debe ser no divisible entre 3 o 5')
+			return false
+		}
 		if (c % 8 != 5) {
-			alert('El valor de "c" no cumple las condiciones necesarias, por favor introduzca un valor valido.')
+			errorNoti('El residuo de c/8 debe ser igual a 5')
+			return false
+		}
+		if ((m < a) || (m < c)) {
+			errorNoti('El valor de m debe ser mayor que los valores de la semilla, "a" y "c"')
 			return false
 		}
 
@@ -210,6 +237,12 @@ const ejecutar = () => {
 		let sem = document.getElementById('sem').value
 		let a = parseInt(document.getElementById('a').value)
 		let m = parseInt(document.getElementById('m').value)
+		/* 
+			a = (8*t) +- 3. t = cualquien entero.
+			m = 2^b. b > 2. periodo = m/4. 8 >= m <= 512
+			x0 = impar (x0 mod 3 o 5) == 0
+		*/
+
 		GENERADOS = (congruencialMulti(sem, a, m, sem.lengthm, 0, []))
 		tablaCongruencialMulti(GENERADOS)
 	}
@@ -236,22 +269,22 @@ const ejecutar = () => {
 	let numTipo = aleatorios.splice(0, totalPaquetes)
 	let numDest = aleatorios.splice(0, totalPaquetes)
 
-	PER_PAQ = generarValores(numPer, 'personas_paquete')
- 	DES_PAQ = generarValores(numDest, 'destino')
-	TIP_PAQ = generarValores(numTipo, 'tipo_paquete')
-
 	let usados = [...numDias, ...numPer, ...numTipo, ...numDest]
 
 	usados.forEach((num, i) => {
 		if (num >= 1 || num < 0) {
-			alert('Alguno(s) de los números generados no cumplen con los requerimientos. Por favor, intente modificando los parámetros de entrada')
-			return false
+			errorNoti('Alguno(s) de los números generados no cumplen con los requerimientos. Por favor, intente modificando los parámetros de entrada')
 		}
 	})
 
  	if (!kolmogorov(usados)) {
- 		alert('Los números generados no satisfacen las condiciones de aleatoriedad.')
+ 		errorNoti('Los números generados no satisfacen las condiciones de aleatoriedad.')
+ 		return false
  	}
+
+	PER_PAQ = generarValores(numPer, 'personas_paquete')
+ 	DES_PAQ = generarValores(numDest, 'destino')
+	TIP_PAQ = generarValores(numTipo, 'tipo_paquete')
 
   PAQ_DIA.forEach(dia => {
   	let res = []
