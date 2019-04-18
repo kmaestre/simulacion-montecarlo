@@ -37,8 +37,7 @@ const productoMedioVariado = (seed, a, k, i, tabla) => {
 	}
 }
 
-const congruencialMixto = (seed, k, a, c, i, tabla) => {
-	let m = 1000
+const congruencialMixto = (seed, k, a, c, m, i, tabla) => {
 
 	let aseedc = ((a * (parseInt(seed))) + c)
 	let nuevaSemilla = (aseedc % m).toString()
@@ -54,7 +53,7 @@ const congruencialMixto = (seed, k, a, c, i, tabla) => {
 
 	tabla.push([seed, aseedc.toString(), nuevaSemilla, numero.toFixed(3)])
 	if (i < n - 1) {
-		return congruencialMixto(nuevaSemilla, k, a, c, i + 1, tabla)
+		return congruencialMixto(nuevaSemilla, k, a, c, m, i + 1, tabla)
 	} else {
 		return tabla
 	}
