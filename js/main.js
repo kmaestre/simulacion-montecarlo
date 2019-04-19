@@ -399,4 +399,6 @@ const ejecutar = () => {
 	document.getElementById('respuesta2').innerText = 'Se generó un ingreso total de ' + gananciaTotal.toFixed(2) + '$ por venta de paquetes.'
 	document.getElementById('respuesta3').innerText = `Clase ${mayorNivelSocial[0][0] == 'Turista' ? 'Media' : 'Alta'} (${mayorNivelSocial[0][1]} paquetes)`
 
+	alertify.success("Simulacion completada")
+
 }
