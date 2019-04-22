@@ -341,7 +341,7 @@ const ejecutar = () => {
 
 	usados.forEach((num, i) => {
 		if (num >= 1 || num < 0) {
-			errorNoti('Alguno(s) de los números generados no cumplen con los requerimientos. Por favor, intente modificando los parámetros de entrada')
+			errorNoti('Alguno(s) de los números generados no cumplen con los requerimientos. Por favor, intente cambiando los parámetros de entrada.')
 		}
 	})
 
@@ -387,7 +387,7 @@ const ejecutar = () => {
 	tablaResultadoPaqDia(PAQ_DIA)
 	tablaResultadoSimulacion(resPaqDias)
 
-	document.getElementById('res-paq-ven').innerHTML += `<td colspan="3">Total: ${totalPaquetes}</td>`
+	document.getElementById('res-paq-ven').innerHTML += `<td colspan="2" class="text-right"><b>Total:</b></td><td><b>${totalPaquetes}</b></td>`
 
 	document.getElementById('numeros-tab').style.display = 'block'
 	document.getElementById('simulacion-tab').style.display = 'block'
@@ -395,7 +395,15 @@ const ejecutar = () => {
 
 
 	console.log(mayorNivelSocial)
-	document.getElementById('respuesta1').innerText = `${destinoMasVisitado[0][0]} (${destinoMasVisitado[0][1]} personas)`
+	if (destinoMasVisitado[0][0] == destinoMasVisitado[1][0]) {
+		document.getElementById('respuesta1').innerText = `
+			#1.- ${destinoMasVisitado[0][0]} (${destinoMasVisitado[0][1]} personas) <br>
+			#2.- ${destinoMasVisitado[1][0]} (${destinoMasVisitado[1][1]} personas) <br>
+			#3.- ${destinoMasVisitado[2][0]} (${destinoMasVisitado[2][1]} personas) <br>
+		`
+	} else {
+		document.getElementById('respuesta1').innerText = `${destinoMasVisitado[0][0]} (${destinoMasVisitado[0][1]} personas)`
+	}
 	document.getElementById('respuesta2').innerText = 'Se generó un ingreso total de ' + gananciaTotal.toFixed(2) + '$ por venta de paquetes.'
 	document.getElementById('respuesta3').innerText = `Clase ${mayorNivelSocial[0][0] == 'Turista' ? 'Media' : 'Alta'} (${mayorNivelSocial[0][1]} paquetes)`
 

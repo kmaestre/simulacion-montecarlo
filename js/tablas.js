@@ -130,7 +130,7 @@ const tablaResultadoSimulacion = (simulacion) => {
 					<td>${paquete[1][0]}</td>
 					<td>${paquete[2][1].toFixed(3)}</td>
 					<td>${paquete[2][0]}</td>
-					<td>${paquete[3]}</td>
+					<td class="text-right">${paquete[3].toFixed(2)}</td>
 				</tr>
 			`
 			})
